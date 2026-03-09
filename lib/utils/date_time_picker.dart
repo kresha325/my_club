@@ -16,6 +16,7 @@ Future<DateTime?> pickDateTime(
     helpText: helpText,
   );
   if (date == null) return null;
+  if (!context.mounted) return null;
 
   final time = await showTimePicker(
     context: context,

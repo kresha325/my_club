@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../utils/app_localizations.dart';
 import '../../utils/app_nav.dart';
 import '../../widgets/admin/admin_access_gate.dart';
 
@@ -9,42 +10,58 @@ class AdminHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String tr(String key) => AppLocalizations.t(context, key);
+
     final items = <({String label, IconData icon, String route})>[
       (
-        label: 'Athletes',
+        label: tr('athletes'),
         icon: Icons.groups_outlined,
         route: AppNav.adminAthletesRoute,
       ),
-      (label: 'News', icon: Icons.feed_outlined, route: AppNav.adminNewsRoute),
       (
-        label: 'Events',
+        label: tr('news'),
+        icon: Icons.feed_outlined,
+        route: AppNav.adminNewsRoute,
+      ),
+      (
+        label: tr('events'),
         icon: Icons.event_outlined,
         route: AppNav.adminEventsRoute,
       ),
       (
-        label: 'Matches',
+        label: tr('matches'),
         icon: Icons.sports_soccer_outlined,
         route: AppNav.adminMatchesRoute,
       ),
       (
-        label: 'Gallery',
+        label: tr('gallery'),
         icon: Icons.photo_library_outlined,
         route: AppNav.adminGalleryRoute,
       ),
       (
-        label: 'Sponsors',
+        label: tr('sponsors'),
         icon: Icons.handshake_outlined,
         route: AppNav.adminSponsorsRoute,
       ),
       (
-        label: 'Ads',
+        label: tr('ads'),
         icon: Icons.campaign_outlined,
         route: AppNav.adminAdsRoute,
       ),
       (
-        label: 'Autopost',
+        label: tr('autopost'),
         icon: Icons.send_outlined,
         route: AppNav.adminAutopostRoute,
+      ),
+      (
+        label: tr('training'),
+        icon: Icons.fitness_center_outlined,
+        route: AppNav.adminTrainingRoute,
+      ),
+      (
+        label: tr('chat'),
+        icon: Icons.forum_outlined,
+        route: AppNav.adminChatRoute,
       ),
     ];
 
@@ -60,14 +77,11 @@ class AdminHomePage extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            'Admin Dashboard',
+            tr('adminDashboard'),
             style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Everything starts empty. Use these sections to populate the club app.\n\n'
-            'Tip: Upload media first (Gallery), then reference URLs in News/Events/Sponsors/Ads.',
-          ),
+          Text(tr('adminDashboardTip')),
           const SizedBox(height: 16),
           GridView.builder(
             shrinkWrap: true,

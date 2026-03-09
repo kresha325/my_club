@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/app_localizations.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/section_header.dart';
 
@@ -8,18 +9,15 @@ class MembershipPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String tr(String key) => AppLocalizations.t(context, key);
+
     return Column(
-      children: const [
-        SectionHeader(title: 'Membership'),
+      children: [
+        SectionHeader(title: tr('membership')),
         Expanded(
           child: EmptyState(
-            title: 'Membership placeholder',
-            subtitle:
-                'Monetization skeleton:\n'
-                '• membership tiers\n'
-                '• premium content\n'
-                '• donations\n\n'
-                'Admin/developer: connect payment provider and protect content with roles.',
+            title: tr('membershipPlaceholder'),
+            subtitle: tr('membershipPlaceholderSubtitle'),
             icon: Icons.card_membership_outlined,
           ),
         ),

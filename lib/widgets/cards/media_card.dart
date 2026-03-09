@@ -29,7 +29,7 @@ class MediaCard extends StatelessWidget {
                   height: 140,
                   width: double.infinity,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) =>
+                  errorBuilder: (context, error, stackTrace) =>
                       PlaceholderImage(height: 140, icon: icon),
                 ),
                 if (isVideo)

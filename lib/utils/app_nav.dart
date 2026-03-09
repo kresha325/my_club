@@ -13,6 +13,7 @@ class NavDestination {
 }
 
 class AppNav {
+  static const String splashRoute = '/splash';
   static const String homeRoute = '/';
   static const String teamRoute = '/team';
   static const String galleryRoute = '/gallery';
@@ -21,6 +22,9 @@ class AppNav {
   static const String sponsorsRoute = '/sponsors';
   static const String liveRoute = '/live';
   static const String membershipRoute = '/membership';
+  static const String aboutRoute = '/about';
+  static const String trainingRoute = '/training';
+  static const String clubChatRoute = '/club-chat';
 
   static const String adminRoot = '/admin';
   static const String adminLoginRoute = '/admin/login';
@@ -33,6 +37,8 @@ class AppNav {
   static const String adminSponsorsRoute = '/admin/sponsors';
   static const String adminAdsRoute = '/admin/ads';
   static const String adminAutopostRoute = '/admin/autopost';
+  static const String adminTrainingRoute = '/admin/training';
+  static const String adminChatRoute = '/admin/chat';
 
   static const List<NavDestination> publicDestinations = [
     NavDestination(label: 'Home', icon: Icons.home_outlined, route: homeRoute),
@@ -40,6 +46,11 @@ class AppNav {
       label: 'Team',
       icon: Icons.groups_outlined,
       route: teamRoute,
+    ),
+    NavDestination(
+      label: 'Training',
+      icon: Icons.fitness_center_outlined,
+      route: trainingRoute,
     ),
     NavDestination(
       label: 'Gallery',
@@ -57,6 +68,11 @@ class AppNav {
       route: eventsRoute,
     ),
     NavDestination(
+      label: 'Club Chat',
+      icon: Icons.forum_outlined,
+      route: clubChatRoute,
+    ),
+    NavDestination(
       label: 'Sponsors',
       icon: Icons.handshake_outlined,
       route: sponsorsRoute,
@@ -66,6 +82,7 @@ class AppNav {
       icon: Icons.live_tv_outlined,
       route: liveRoute,
     ),
+    NavDestination(label: 'About', icon: Icons.info_outline, route: aboutRoute),
   ];
 
   static const List<NavDestination> adminDestinations = [
@@ -113,6 +130,16 @@ class AppNav {
       label: 'Autopost',
       icon: Icons.send_outlined,
       route: adminAutopostRoute,
+    ),
+    NavDestination(
+      label: 'Training',
+      icon: Icons.fitness_center_outlined,
+      route: adminTrainingRoute,
+    ),
+    NavDestination(
+      label: 'Chat',
+      icon: Icons.forum_outlined,
+      route: adminChatRoute,
     ),
   ];
 

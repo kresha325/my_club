@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../app/dependencies.dart';
 import '../../../models/gallery_item.dart';
 import '../../../utils/app_constants.dart';
+import '../../../utils/app_localizations.dart';
 
 class GalleryUploadDialog extends StatefulWidget {
   const GalleryUploadDialog({super.key});
@@ -64,8 +65,19 @@ class _GalleryUploadDialogState extends State<GalleryUploadDialog> {
   String _fileName = '';
   String? _contentType;
   bool _isVideo = false;
+  bool _toFacebook = false;
+  bool _toInstagram = false;
+  bool _toYoutube = false;
   bool _isUploading = false;
   String _error = '';
+
+  List<String> _selectedPlatforms() {
+    return <String>[
+      if (_toFacebook) 'facebook',
+      if (_toInstagram) 'instagram',
+      if (_toYoutube) 'youtube',
+    ];
+  }
 
   @override
   void dispose() {
@@ -94,7 +106,7 @@ class _GalleryUploadDialogState extends State<GalleryUploadDialog> {
   Future<void> _upload() async {
     if (!_formKey.currentState!.validate()) return;
     if (_bytes == null || _fileName.isEmpty) {
-      setState(() => _error = 'Pick a file first.');
+      setState(() => _error = AppLocalizations.t(context, 'pickFile'));
       return;
     }
 
@@ -121,6 +133,8 @@ class _GalleryUploadDialogState extends State<GalleryUploadDialog> {
         mediaUrl: url,
         thumbnailUrl: _isVideo ? '' : url,
         mediaType: _isVideo ? GalleryMediaType.video : GalleryMediaType.image,
+        autopostEnabled: _selectedPlatforms().isNotEmpty,
+        autopostPlatforms: _selectedPlatforms(),
         createdAt: null,
       );
 
@@ -134,8 +148,10 @@ class _GalleryUploadDialogState extends State<GalleryUploadDialog> {
 
   @override
   Widget build(BuildContext context) {
+    String tr(String key) => AppLocalizations.t(context, key);
+
     return AlertDialog(
-      title: const Text('Upload gallery media'),
+      title: Text(tr('uploadGalleryMedia')),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 560),
         child: Form(
@@ -148,26 +164,68 @@ class _GalleryUploadDialogState extends State<GalleryUploadDialog> {
                   onPressed: _isUploading ? null : _pickFile,
                   icon: const Icon(Icons.upload_file_outlined),
                   label: Text(
-                    _fileName.isEmpty ? 'Pick file' : 'Picked: $_fileName',
+                    _fileName.isEmpty
+                        ? tr('pickFile')
+                        : '${tr('picked')}: $_fileName',
                   ),
                 ),
                 const SizedBox(height: 12),
                 SwitchListTile(
-                  title: const Text('This file is a video'),
-                  subtitle: const Text(
-                    'Video thumbnails are a TODO placeholder.',
-                  ),
+                  title: Text(tr('thisFileIsVideo')),
+                  subtitle: Text(tr('videoThumbTodo')),
                   value: _isVideo,
                   onChanged: _isUploading
                       ? null
                       : (v) => setState(() => _isVideo = v),
                 ),
                 const SizedBox(height: 12),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    tr('autopostPlatformsForThisMedia'),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                CheckboxListTile(
+                  value: _toFacebook,
+                  onChanged: _isUploading
+                      ? null
+                      : (v) => setState(() => _toFacebook = v ?? false),
+                  title: Text(tr('facebook')),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: EdgeInsets.zero,
+                ),
+                CheckboxListTile(
+                  value: _toInstagram,
+                  onChanged: _isUploading
+                      ? null
+                      : (v) => setState(() => _toInstagram = v ?? false),
+                  title: Text(tr('instagram')),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: EdgeInsets.zero,
+                ),
+                CheckboxListTile(
+                  value: _toYoutube,
+                  onChanged: _isUploading
+                      ? null
+                      : (v) => setState(() => _toYoutube = v ?? false),
+                  title: Text(tr('youtube')),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: EdgeInsets.zero,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    tr('autopostNoPlatformMeansOff'),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ),
+                const SizedBox(height: 12),
                 TextFormField(
                   controller: _captionCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Caption (optional)',
-                    helperText: 'Keep blank for now; admin can edit later.',
+                  decoration: InputDecoration(
+                    labelText: tr('captionOptional'),
+                    helperText: tr('keepBlankLater'),
                   ),
                   validator: (v) {
                     // Optional field; keep validation for future extensions.
@@ -183,10 +241,7 @@ class _GalleryUploadDialogState extends State<GalleryUploadDialog> {
                     ),
                   ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Uploads to Firebase Storage, then creates a Firestore `gallery` doc.\n'
-                  'Developer: add real video thumbnail generation via Cloud Functions.',
-                ),
+                Text(tr('uploadsInfoText')),
               ],
             ),
           ),
@@ -195,11 +250,11 @@ class _GalleryUploadDialogState extends State<GalleryUploadDialog> {
       actions: [
         TextButton(
           onPressed: _isUploading ? null : () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(tr('cancel')),
         ),
         FilledButton(
           onPressed: _isUploading ? null : _upload,
-          child: Text(_isUploading ? 'Uploading…' : 'Upload'),
+          child: Text(_isUploading ? tr('uploading') : tr('upload')),
         ),
       ],
     );

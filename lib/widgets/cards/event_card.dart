@@ -27,10 +27,11 @@ class EventCard extends StatelessWidget {
               event.bannerUrl,
               height: 120,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => const PlaceholderImage(
-                height: 120,
-                icon: Icons.event_outlined,
-              ),
+              errorBuilder: (context, error, stackTrace) =>
+                  const PlaceholderImage(
+                    height: 120,
+                    icon: Icons.event_outlined,
+                  ),
             ),
           Padding(
             padding: const EdgeInsets.all(12),

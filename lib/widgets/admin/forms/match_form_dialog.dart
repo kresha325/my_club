@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../models/club_match.dart';
+import '../../../utils/app_localizations.dart';
 import '../../../utils/date_time_picker.dart';
 import '../../../utils/validators.dart';
 
@@ -64,7 +65,7 @@ class _MatchFormDialogState extends State<MatchFormDialog> {
     final picked = await pickDateTime(
       context,
       initial: _matchAt,
-      helpText: 'Match date',
+      helpText: AppLocalizations.t(context, 'matchDate'),
     );
     if (picked == null) return;
     setState(() => _matchAt = picked);
@@ -92,9 +93,10 @@ class _MatchFormDialogState extends State<MatchFormDialog> {
   @override
   Widget build(BuildContext context) {
     final isEdit = widget.initial != null;
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return AlertDialog(
-      title: Text(isEdit ? 'Edit match' : 'Add match'),
+      title: Text(isEdit ? tr('editMatch') : tr('addMatch')),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 560),
         child: Form(
@@ -104,29 +106,31 @@ class _MatchFormDialogState extends State<MatchFormDialog> {
               children: [
                 TextFormField(
                   controller: _opponentCtrl,
-                  decoration: const InputDecoration(labelText: 'Opponent'),
+                  decoration: InputDecoration(labelText: tr('opponent')),
                   validator: Validators.requiredField,
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _competitionCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Competition (optional)',
+                  decoration: InputDecoration(
+                    labelText: tr('competitionOptional'),
                   ),
                 ),
                 const SizedBox(height: 12),
                 SwitchListTile(
-                  title: const Text('Home match'),
+                  title: Text(tr('homeMatch')),
                   value: _isHome,
                   onChanged: (v) => setState(() => _isHome = v),
                 ),
                 Row(
                   children: [
-                    Expanded(child: Text('Match date: ${_fmt(_matchAt)}')),
+                    Expanded(
+                      child: Text('${tr('matchDate')}: ${_fmt(_matchAt)}'),
+                    ),
                     TextButton.icon(
                       onPressed: _pickMatchAt,
                       icon: const Icon(Icons.schedule),
-                      label: const Text('Pick'),
+                      label: Text(tr('pick')),
                     ),
                   ],
                 ),
@@ -136,8 +140,8 @@ class _MatchFormDialogState extends State<MatchFormDialog> {
                     Expanded(
                       child: TextFormField(
                         controller: _homeScoreCtrl,
-                        decoration: const InputDecoration(
-                          labelText: 'Home score (optional)',
+                        decoration: InputDecoration(
+                          labelText: tr('homeScoreOptional'),
                         ),
                         keyboardType: TextInputType.number,
                       ),
@@ -146,8 +150,8 @@ class _MatchFormDialogState extends State<MatchFormDialog> {
                     Expanded(
                       child: TextFormField(
                         controller: _awayScoreCtrl,
-                        decoration: const InputDecoration(
-                          labelText: 'Away score (optional)',
+                        decoration: InputDecoration(
+                          labelText: tr('awayScoreOptional'),
                         ),
                         keyboardType: TextInputType.number,
                       ),
@@ -157,9 +161,9 @@ class _MatchFormDialogState extends State<MatchFormDialog> {
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _highlightsUrlCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Highlights URL (optional)',
-                    helperText: 'YouTube / Facebook video link placeholder.',
+                  decoration: InputDecoration(
+                    labelText: tr('highlightsUrlOptional'),
+                    helperText: tr('highlightsHelper'),
                   ),
                 ),
               ],
@@ -170,9 +174,9 @@ class _MatchFormDialogState extends State<MatchFormDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(tr('cancel')),
         ),
-        FilledButton(onPressed: _save, child: const Text('Save')),
+        FilledButton(onPressed: _save, child: Text(tr('save'))),
       ],
     );
   }

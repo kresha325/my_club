@@ -24,7 +24,7 @@ class AdminNewsPage extends StatelessWidget {
               onPressed: () async {
                 final result = await showDialog<NewsItem>(
                   context: context,
-                  builder: (_) => const NewsFormDialog(),
+                  builder: (context) => const NewsFormDialog(),
                 );
                 if (result == null) return;
                 await deps.newsRepository.create(result);
@@ -49,7 +49,8 @@ class AdminNewsPage extends StatelessWidget {
                 return ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   itemCount: items.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 8),
                   itemBuilder: (context, index) {
                     final news = items[index];
                     return Card(
@@ -73,7 +74,8 @@ class AdminNewsPage extends StatelessWidget {
                               onPressed: () async {
                                 final result = await showDialog<NewsItem>(
                                   context: context,
-                                  builder: (_) => NewsFormDialog(initial: news),
+                                  builder: (context) =>
+                                      NewsFormDialog(initial: news),
                                 );
                                 if (result == null) return;
                                 await deps.newsRepository.update(result);

@@ -24,7 +24,7 @@ class AdminAdsPage extends StatelessWidget {
               onPressed: () async {
                 final result = await showDialog<Ad>(
                   context: context,
-                  builder: (_) => const AdFormDialog(),
+                  builder: (context) => const AdFormDialog(),
                 );
                 if (result == null) return;
                 await deps.adsRepository.create(result);
@@ -51,7 +51,8 @@ class AdminAdsPage extends StatelessWidget {
                 return ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   itemCount: items.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 8),
                   itemBuilder: (context, index) {
                     final ad = items[index];
                     return Card(
@@ -75,7 +76,8 @@ class AdminAdsPage extends StatelessWidget {
                               onPressed: () async {
                                 final result = await showDialog<Ad>(
                                   context: context,
-                                  builder: (_) => AdFormDialog(initial: ad),
+                                  builder: (context) =>
+                                      AdFormDialog(initial: ad),
                                 );
                                 if (result == null) return;
                                 await deps.adsRepository.update(result);

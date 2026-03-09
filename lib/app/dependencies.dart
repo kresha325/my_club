@@ -16,6 +16,9 @@ import '../services/repositories/gallery_repository.dart';
 import '../services/repositories/matches_repository.dart';
 import '../services/repositories/news_repository.dart';
 import '../services/repositories/sponsors_repository.dart';
+import '../services/repositories/training_sessions_repository.dart';
+import '../services/repositories/announcements_repository.dart';
+import '../services/repositories/member_profiles_repository.dart';
 
 class AppDependencies {
   AppDependencies._({
@@ -61,6 +64,12 @@ class AppDependencies {
   late final AdsRepository adsRepository = AdsRepository(firestore);
   late final AutopostJobsRepository autopostJobsRepository =
       AutopostJobsRepository(firestore);
+  late final TrainingSessionsRepository trainingSessionsRepository =
+      TrainingSessionsRepository(firestore);
+  late final AnnouncementsRepository announcementsRepository =
+      AnnouncementsRepository(firestore);
+  late final MemberProfilesRepository memberProfilesRepository =
+      MemberProfilesRepository(firestore);
 }
 
 class DependenciesScope extends InheritedWidget {

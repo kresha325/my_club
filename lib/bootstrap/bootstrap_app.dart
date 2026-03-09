@@ -10,6 +10,13 @@ import '../pages/system/loading_page.dart';
 class BootstrapApp extends StatelessWidget {
   const BootstrapApp({super.key});
 
+  Route<dynamic> _bootstrapRoute(Widget child) {
+    return MaterialPageRoute<void>(
+      settings: const RouteSettings(name: '/'),
+      builder: (_) => child,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -18,11 +25,16 @@ class BootstrapApp extends StatelessWidget {
       ),
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
-          return const MaterialApp(home: LoadingPage());
+          return MaterialApp(
+            onGenerateRoute: (_) => _bootstrapRoute(const LoadingPage()),
+          );
         }
 
         if (snapshot.hasError) {
-          return MaterialApp(home: FirebaseSetupPage(error: snapshot.error));
+          return MaterialApp(
+            onGenerateRoute: (_) =>
+                _bootstrapRoute(FirebaseSetupPage(error: snapshot.error)),
+          );
         }
 
         final deps = AppDependencies.create();

@@ -9,7 +9,13 @@ setGlobalOptions({
 
 export { autopostNow } from "./callables/autopostNow";
 export { processAutopostJobs } from "./schedules/processAutopostJobs";
-export { onGalleryCreated } from "./triggers/onGalleryCreated";
-export { onEventCreated } from "./triggers/onEventCreated";
+export {
+  onNewsCreated,
+  onEventCreated,
+  onMatchCreated,
+  onGalleryCreated,
+  onAdCreated,
+  onAnnouncementCreated,
+} from "./triggers/onContentCreated";
 export { onMediaUploaded } from "./triggers/onMediaUploaded";
 

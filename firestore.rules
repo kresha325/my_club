@@ -43,10 +43,36 @@ service cloud.firestore {
       allow read: if true;
       allow write: if isAdmin();
     }
+    match /training_sessions/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // One-way admin-to-members chat/broadcast.
+    match /announcements/{announcementId} {
+      allow read: if true;
+      allow write: if isAdmin();
+
+      // Members can respond only to their own response doc.
+      // Admin can read all responses.
+      match /responses/{uid} {
+        allow read: if isAdmin() || (signedIn() && request.auth.uid == uid);
+        allow create, update: if signedIn() && request.auth.uid == uid;
+        allow delete: if isAdmin();
+      }
+    }
+
+    match /member_profiles/{uid} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == uid);
+      allow write: if signedIn() && request.auth.uid == uid;
+    }
 
     // Admin allowlist
     match /admins/{uid} {
-      allow read, write: if isAdmin();
+      // Allow signed-in users to read only their own allowlist document,
+      // so the app can determine admin access without a circular rule check.
+      allow read: if signedIn() && request.auth.uid == uid;
+      allow write: if isAdmin();
     }
 
     // Autopost job queue (admin only)

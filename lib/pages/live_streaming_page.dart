@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../utils/app_localizations.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/section_header.dart';
 
@@ -8,15 +9,15 @@ class LiveStreamingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String tr(String key) => AppLocalizations.t(context, key);
+
     return Column(
-      children: const [
-        SectionHeader(title: 'Live Streaming'),
+      children: [
+        SectionHeader(title: tr('liveStreaming')),
         Expanded(
           child: EmptyState(
-            title: 'Live streaming not configured',
-            subtitle:
-                'Placeholder for YouTube Live / Facebook Live embeds.\n\n'
-                'Admin/developer: store stream URLs in Firestore and build an embed player here.',
+            title: tr('liveNotConfigured'),
+            subtitle: tr('livePlaceholderSubtitle'),
             icon: Icons.live_tv_outlined,
           ),
         ),

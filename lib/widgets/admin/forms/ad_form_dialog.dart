@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../models/ad.dart';
+import '../../../utils/app_localizations.dart';
 import '../../../utils/date_time_picker.dart';
 import '../../../utils/validators.dart';
 
@@ -48,7 +49,7 @@ class _AdFormDialogState extends State<AdFormDialog> {
   }
 
   String _fmt(DateTime? dt) {
-    if (dt == null) return 'Not set';
+    if (dt == null) return AppLocalizations.t(context, 'notSet');
     return DateFormat.yMMMd().add_Hm().format(dt.toLocal());
   }
 
@@ -56,7 +57,7 @@ class _AdFormDialogState extends State<AdFormDialog> {
     final picked = await pickDateTime(
       context,
       initial: _startsAt,
-      helpText: 'Starts at',
+      helpText: AppLocalizations.t(context, 'startsAtHelp'),
     );
     if (picked == null) return;
     setState(() => _startsAt = picked);
@@ -66,7 +67,7 @@ class _AdFormDialogState extends State<AdFormDialog> {
     final picked = await pickDateTime(
       context,
       initial: _endsAt,
-      helpText: 'Ends at',
+      helpText: AppLocalizations.t(context, 'endsAtHelp'),
     );
     if (picked == null) return;
     setState(() => _endsAt = picked);
@@ -92,9 +93,10 @@ class _AdFormDialogState extends State<AdFormDialog> {
   @override
   Widget build(BuildContext context) {
     final isEdit = widget.initial != null;
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return AlertDialog(
-      title: Text(isEdit ? 'Edit ad' : 'Add ad'),
+      title: Text(isEdit ? tr('editAd') : tr('addAd')),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 560),
         child: Form(
@@ -104,58 +106,58 @@ class _AdFormDialogState extends State<AdFormDialog> {
               children: [
                 TextFormField(
                   controller: _titleCtrl,
-                  decoration: const InputDecoration(labelText: 'Title'),
+                  decoration: InputDecoration(labelText: tr('title')),
                   validator: Validators.requiredField,
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _placementCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Placement (optional)',
-                    helperText:
-                        'Example: home_top, sponsors_page, results_bottom',
+                  decoration: InputDecoration(
+                    labelText: tr('placementOptional'),
+                    helperText: tr('placementExample'),
                   ),
                 ),
                 const SizedBox(height: 12),
                 SwitchListTile(
-                  title: const Text('Active'),
+                  title: Text(tr('active')),
                   value: _isActive,
                   onChanged: (v) => setState(() => _isActive = v),
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _imageUrlCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Image URL (optional)',
-                    helperText:
-                        'Tip: upload in Admin → Gallery and paste the URL.',
+                  decoration: InputDecoration(
+                    labelText: tr('imageUrlOptional'),
+                    helperText: tr('galleryUrlTip'),
                   ),
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _clickUrlCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Click URL (optional)',
+                  decoration: InputDecoration(
+                    labelText: tr('clickUrlOptional'),
                   ),
                 ),
                 const SizedBox(height: 12),
                 Row(
                   children: [
-                    Expanded(child: Text('Starts: ${_fmt(_startsAt)}')),
+                    Expanded(
+                      child: Text('${tr('starts')}: ${_fmt(_startsAt)}'),
+                    ),
                     TextButton.icon(
                       onPressed: _pickStartsAt,
                       icon: const Icon(Icons.schedule),
-                      label: const Text('Pick'),
+                      label: Text(tr('pick')),
                     ),
                   ],
                 ),
                 Row(
                   children: [
-                    Expanded(child: Text('Ends: ${_fmt(_endsAt)}')),
+                    Expanded(child: Text('${tr('ends')}: ${_fmt(_endsAt)}')),
                     TextButton.icon(
                       onPressed: _pickEndsAt,
                       icon: const Icon(Icons.schedule),
-                      label: const Text('Pick'),
+                      label: Text(tr('pick')),
                     ),
                   ],
                 ),
@@ -167,9 +169,9 @@ class _AdFormDialogState extends State<AdFormDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(tr('cancel')),
         ),
-        FilledButton(onPressed: _save, child: const Text('Save')),
+        FilledButton(onPressed: _save, child: Text(tr('save'))),
       ],
     );
   }

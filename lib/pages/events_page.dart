@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../app/dependencies.dart';
 import '../models/club_event.dart';
+import '../utils/app_localizations.dart';
 import '../widgets/cards/event_card.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/section_header.dart';
@@ -12,19 +13,20 @@ class EventsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deps = DependenciesScope.of(context);
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return Column(
       children: [
-        const SectionHeader(title: 'Events'),
+        SectionHeader(title: tr('events')),
         Expanded(
           child: StreamBuilder<List<ClubEvent>>(
             stream: deps.eventsRepository.streamUpcoming(),
             builder: (context, snapshot) {
               final events = snapshot.data ?? const <ClubEvent>[];
               if (events.isEmpty) {
-                return const EmptyState(
-                  title: 'No events yet',
-                  subtitle: 'Add tournaments and events from the admin panel.',
+                return EmptyState(
+                  title: tr('noEventsYet'),
+                  subtitle: tr('eventsEmptySubtitle'),
                   icon: Icons.event_outlined,
                 );
               }

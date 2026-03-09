@@ -1,9 +1,41 @@
+import 'dart:typed_data';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../../../app/dependencies.dart';
 import '../../../models/club_event.dart';
+import '../../../utils/app_constants.dart';
+import '../../../utils/app_localizations.dart';
 import '../../../utils/date_time_picker.dart';
 import '../../../utils/validators.dart';
+
+enum _BannerSourceMode { publicUrl, uploadPhoto }
+
+String? _extensionFromName(String name) {
+  final dot = name.lastIndexOf('.');
+  if (dot == -1 || dot >= name.length - 1) return null;
+  return name.substring(dot + 1);
+}
+
+String _guessImageContentType(String fileName) {
+  final ext = _extensionFromName(fileName)?.toLowerCase();
+  switch (ext) {
+    case 'png':
+      return 'image/png';
+    case 'gif':
+      return 'image/gif';
+    case 'webp':
+      return 'image/webp';
+    case 'bmp':
+      return 'image/bmp';
+    case 'jpg':
+    case 'jpeg':
+    default:
+      return 'image/jpeg';
+  }
+}
 
 class EventFormDialog extends StatefulWidget {
   const EventFormDialog({this.initial, super.key});
@@ -23,6 +55,11 @@ class _EventFormDialogState extends State<EventFormDialog> {
 
   DateTime? _startAt;
   DateTime? _endAt;
+  _BannerSourceMode _bannerSourceMode = _BannerSourceMode.publicUrl;
+  Uint8List? _bannerBytes;
+  String _bannerFileName = '';
+  String _error = '';
+  bool _isSaving = false;
 
   @override
   void initState() {
@@ -35,6 +72,9 @@ class _EventFormDialogState extends State<EventFormDialog> {
     _bannerUrlCtrl = TextEditingController(
       text: widget.initial?.bannerUrl ?? '',
     );
+    _bannerSourceMode = _bannerUrlCtrl.text.trim().isNotEmpty
+        ? _BannerSourceMode.publicUrl
+        : _BannerSourceMode.uploadPhoto;
     _startAt = widget.initial?.startAt;
     _endAt = widget.initial?.endAt;
   }
@@ -57,7 +97,7 @@ class _EventFormDialogState extends State<EventFormDialog> {
     final picked = await pickDateTime(
       context,
       initial: _startAt,
-      helpText: 'Event start',
+      helpText: AppLocalizations.t(context, 'eventStartHelp'),
     );
     if (picked == null) return;
     setState(() => _startAt = picked);
@@ -67,34 +107,91 @@ class _EventFormDialogState extends State<EventFormDialog> {
     final picked = await pickDateTime(
       context,
       initial: _endAt,
-      helpText: 'Event end',
+      helpText: AppLocalizations.t(context, 'eventEndHelp'),
     );
     if (picked == null) return;
     setState(() => _endAt = picked);
   }
 
-  void _save() {
+  Future<void> _pickBannerPhoto() async {
+    setState(() => _error = '');
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      withData: true,
+    );
+    if (result == null || result.files.isEmpty) return;
+
+    final file = result.files.first;
+    if (file.bytes == null) {
+      setState(() => _error = 'Could not read selected photo bytes.');
+      return;
+    }
+
+    setState(() {
+      _bannerBytes = file.bytes;
+      _bannerFileName = file.name;
+      _error = '';
+    });
+  }
+
+  Future<String> _uploadBannerImage() async {
+    final bytes = _bannerBytes;
+    if (bytes == null || _bannerFileName.isEmpty) {
+      throw StateError(AppLocalizations.t(context, 'pickPhotoFirst'));
+    }
+
+    final deps = DependenciesScope.of(context);
+    final safeName = _bannerFileName.replaceAll(' ', '_');
+    final path =
+        '${AppConstants.storageClubMediaRoot}/events/${DateTime.now().millisecondsSinceEpoch}_$safeName';
+    return deps.mediaStorageService.uploadBytes(
+      path: path,
+      bytes: bytes,
+      contentType: _guessImageContentType(_bannerFileName),
+    );
+  }
+
+  Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
 
-    final result = ClubEvent(
-      id: widget.initial?.id ?? '',
-      title: _titleCtrl.text.trim(),
-      description: _descriptionCtrl.text.trim(),
-      location: _locationCtrl.text.trim(),
-      startAt: _startAt,
-      endAt: _endAt,
-      bannerUrl: _bannerUrlCtrl.text.trim(),
-      createdAt: widget.initial?.createdAt,
-    );
-    Navigator.of(context).pop(result);
+    setState(() {
+      _isSaving = true;
+      _error = '';
+    });
+
+    try {
+      var bannerUrl = _bannerUrlCtrl.text.trim();
+      if (_bannerSourceMode == _BannerSourceMode.uploadPhoto) {
+        bannerUrl = await _uploadBannerImage();
+      }
+
+      final result = ClubEvent(
+        id: widget.initial?.id ?? '',
+        title: _titleCtrl.text.trim(),
+        description: _descriptionCtrl.text.trim(),
+        location: _locationCtrl.text.trim(),
+        startAt: _startAt,
+        endAt: _endAt,
+        bannerUrl: bannerUrl,
+        createdAt: widget.initial?.createdAt,
+      );
+      if (mounted) Navigator.of(context).pop(result);
+    } catch (e) {
+      setState(() => _error = e.toString());
+    } finally {
+      if (mounted) {
+        setState(() => _isSaving = false);
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final isEdit = widget.initial != null;
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return AlertDialog(
-      title: Text(isEdit ? 'Edit event' : 'Add event'),
+      title: Text(isEdit ? tr('editEvent') : tr('addEvent')),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 560),
         child: Form(
@@ -104,54 +201,104 @@ class _EventFormDialogState extends State<EventFormDialog> {
               children: [
                 TextFormField(
                   controller: _titleCtrl,
-                  decoration: const InputDecoration(labelText: 'Title'),
+                  decoration: InputDecoration(labelText: tr('title')),
                   validator: Validators.requiredField,
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _locationCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Location (optional)',
+                  decoration: InputDecoration(
+                    labelText: tr('locationOptional'),
                   ),
                 ),
                 const SizedBox(height: 12),
                 Row(
                   children: [
-                    Expanded(child: Text('Start: ${_fmt(_startAt)}')),
+                    Expanded(child: Text('${tr('start')}: ${_fmt(_startAt)}')),
                     TextButton.icon(
                       onPressed: _pickStart,
                       icon: const Icon(Icons.schedule),
-                      label: const Text('Pick'),
+                      label: Text(tr('pick')),
                     ),
                   ],
                 ),
                 Row(
                   children: [
-                    Expanded(child: Text('End: ${_fmt(_endAt)}')),
+                    Expanded(child: Text('${tr('end')}: ${_fmt(_endAt)}')),
                     TextButton.icon(
                       onPressed: _pickEnd,
                       icon: const Icon(Icons.schedule),
-                      label: const Text('Pick'),
+                      label: Text(tr('pick')),
                     ),
                   ],
                 ),
                 const SizedBox(height: 12),
-                TextFormField(
-                  controller: _bannerUrlCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Banner URL (optional)',
-                    helperText:
-                        'Tip: upload in Admin → Gallery and paste the URL.',
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    tr('bannerImageSource'),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
+                RadioListTile<_BannerSourceMode>(
+                  value: _BannerSourceMode.publicUrl,
+                  groupValue: _bannerSourceMode,
+                  onChanged: _isSaving
+                      ? null
+                      : (v) => setState(() {
+                          _bannerSourceMode = v!;
+                          _error = '';
+                        }),
+                  title: Text(tr('usePublicUrl')),
+                  contentPadding: EdgeInsets.zero,
+                ),
+                RadioListTile<_BannerSourceMode>(
+                  value: _BannerSourceMode.uploadPhoto,
+                  groupValue: _bannerSourceMode,
+                  onChanged: _isSaving
+                      ? null
+                      : (v) => setState(() {
+                          _bannerSourceMode = v!;
+                          _error = '';
+                        }),
+                  title: Text(tr('uploadPhoto')),
+                  contentPadding: EdgeInsets.zero,
+                ),
+                if (_bannerSourceMode == _BannerSourceMode.publicUrl)
+                  TextFormField(
+                    controller: _bannerUrlCtrl,
+                    decoration: InputDecoration(
+                      labelText: tr('bannerUrlOptional'),
+                      helperText: tr('galleryUrlTip'),
+                    ),
+                  )
+                else
+                  OutlinedButton.icon(
+                    onPressed: _isSaving ? null : _pickBannerPhoto,
+                    icon: const Icon(Icons.image_outlined),
+                    label: Text(
+                      _bannerFileName.isEmpty
+                          ? tr('pickPhoto')
+                          : '${tr('selectedPhoto')}: $_bannerFileName',
+                    ),
+                  ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _descriptionCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Description (optional)',
+                  decoration: InputDecoration(
+                    labelText: tr('descriptionOptional'),
                   ),
                   maxLines: 5,
                 ),
+                if (_error.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    _error,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                ],
               ],
             ),
           ),
@@ -159,10 +306,13 @@ class _EventFormDialogState extends State<EventFormDialog> {
       ),
       actions: [
         TextButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          onPressed: _isSaving ? null : () => Navigator.of(context).pop(),
+          child: Text(tr('cancel')),
         ),
-        FilledButton(onPressed: _save, child: const Text('Save')),
+        FilledButton(
+          onPressed: _isSaving ? null : _save,
+          child: Text(_isSaving ? tr('uploading') : tr('save')),
+        ),
       ],
     );
   }

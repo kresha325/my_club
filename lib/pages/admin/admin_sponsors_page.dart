@@ -24,7 +24,7 @@ class AdminSponsorsPage extends StatelessWidget {
               onPressed: () async {
                 final result = await showDialog<Sponsor>(
                   context: context,
-                  builder: (_) => const SponsorFormDialog(),
+                  builder: (context) => const SponsorFormDialog(),
                 );
                 if (result == null) return;
                 await deps.sponsorsRepository.create(result);
@@ -50,7 +50,8 @@ class AdminSponsorsPage extends StatelessWidget {
                 return ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   itemCount: items.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 8),
                   itemBuilder: (context, index) {
                     final sponsor = items[index];
                     return Card(
@@ -72,7 +73,7 @@ class AdminSponsorsPage extends StatelessWidget {
                               onPressed: () async {
                                 final result = await showDialog<Sponsor>(
                                   context: context,
-                                  builder: (_) =>
+                                  builder: (context) =>
                                       SponsorFormDialog(initial: sponsor),
                                 );
                                 if (result == null) return;

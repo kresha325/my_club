@@ -9,6 +9,8 @@ class GalleryItem {
     required this.mediaUrl,
     required this.thumbnailUrl,
     required this.mediaType,
+    required this.autopostEnabled,
+    required this.autopostPlatforms,
     required this.createdAt,
   });
 
@@ -17,6 +19,8 @@ class GalleryItem {
   final String mediaUrl;
   final String thumbnailUrl;
   final GalleryMediaType mediaType;
+  final bool autopostEnabled;
+  final List<String> autopostPlatforms;
   final DateTime? createdAt;
 
   GalleryItem copyWith({
@@ -25,6 +29,8 @@ class GalleryItem {
     String? mediaUrl,
     String? thumbnailUrl,
     GalleryMediaType? mediaType,
+    bool? autopostEnabled,
+    List<String>? autopostPlatforms,
     DateTime? createdAt,
   }) {
     return GalleryItem(
@@ -33,6 +39,8 @@ class GalleryItem {
       mediaUrl: mediaUrl ?? this.mediaUrl,
       thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
       mediaType: mediaType ?? this.mediaType,
+      autopostEnabled: autopostEnabled ?? this.autopostEnabled,
+      autopostPlatforms: autopostPlatforms ?? this.autopostPlatforms,
       createdAt: createdAt ?? this.createdAt,
     );
   }
@@ -47,6 +55,10 @@ class GalleryItem {
       mediaType: type == 'video'
           ? GalleryMediaType.video
           : GalleryMediaType.image,
+      autopostEnabled: (data['autopostEnabled'] as bool?) ?? false,
+      autopostPlatforms:
+          (data['autopostPlatforms'] as List?)?.whereType<String>().toList() ??
+          const [],
       createdAt: readFirestoreDateTime(data['createdAt']),
     );
   }
@@ -57,6 +69,8 @@ class GalleryItem {
       'mediaUrl': mediaUrl,
       'thumbnailUrl': thumbnailUrl,
       'mediaType': mediaType == GalleryMediaType.video ? 'video' : 'image',
+      'autopostEnabled': autopostEnabled,
+      'autopostPlatforms': autopostPlatforms,
       'createdAt': writeFirestoreDateTime(createdAt),
     };
   }

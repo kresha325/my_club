@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/dependencies.dart';
+import '../../app/locale_scope.dart';
+import '../../app/theme_scope.dart';
 import '../../utils/app_constants.dart';
+import '../../utils/app_localizations.dart';
 import '../../utils/app_nav.dart';
 
 class AdminScaffold extends StatelessWidget {
@@ -13,7 +16,11 @@ class AdminScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String tr(String key) => AppLocalizations.t(context, key);
     final deps = DependenciesScope.of(context);
+    final themeController = ThemeScope.of(context);
+    final localeController = LocaleScope.of(context);
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     final destinations = AppNav.adminDestinations;
     final selectedIndex = AppNav.indexForLocation(
       location: location,
@@ -23,15 +30,31 @@ class AdminScaffold extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('${AppConstants.appName} — Admin'),
+        title: Text('${AppConstants.appName} — ${tr('admin')}'),
         actions: [
           IconButton(
-            tooltip: 'Back to public app',
+            tooltip: isDark ? tr('switchToLight') : tr('switchToDark'),
+            onPressed: themeController.toggleLightDark,
+            icon: Icon(
+              isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
+            ),
+          ),
+          PopupMenuButton<Locale>(
+            tooltip: tr('language'),
+            onSelected: localeController.setLocale,
+            itemBuilder: (context) => const [
+              PopupMenuItem(value: Locale('sq'), child: Text('Shqip')),
+              PopupMenuItem(value: Locale('en'), child: Text('English')),
+            ],
+            icon: const Icon(Icons.language_outlined),
+          ),
+          IconButton(
+            tooltip: tr('backToPublic'),
             onPressed: () => context.go(AppNav.homeRoute),
             icon: const Icon(Icons.public),
           ),
           IconButton(
-            tooltip: 'Sign out',
+            tooltip: tr('signOut'),
             onPressed: () async {
               await deps.authService.signOut();
               if (context.mounted) context.go(AppNav.homeRoute);
@@ -53,7 +76,7 @@ class AdminScaffold extends StatelessWidget {
                 for (final d in destinations)
                   NavigationRailDestination(
                     icon: Icon(d.icon),
-                    label: Text(d.label),
+                    label: Text(_labelForRoute(context, d.route)),
                   ),
               ],
             )
@@ -71,9 +94,30 @@ class AdminScaffold extends StatelessWidget {
               type: BottomNavigationBarType.fixed,
               items: [
                 for (final d in destinations)
-                  BottomNavigationBarItem(icon: Icon(d.icon), label: d.label),
+                  BottomNavigationBarItem(
+                    icon: Icon(d.icon),
+                    label: _labelForRoute(context, d.route),
+                  ),
               ],
             ),
     );
+  }
+
+  String _labelForRoute(BuildContext context, String route) {
+    String tr(String key) => AppLocalizations.t(context, key);
+    return switch (route) {
+      AppNav.adminHomeRoute => tr('dashboard'),
+      AppNav.adminAthletesRoute => tr('athletes'),
+      AppNav.adminNewsRoute => tr('news'),
+      AppNav.adminEventsRoute => tr('events'),
+      AppNav.adminMatchesRoute => tr('matches'),
+      AppNav.adminGalleryRoute => tr('gallery'),
+      AppNav.adminSponsorsRoute => tr('sponsors'),
+      AppNav.adminAdsRoute => tr('ads'),
+      AppNav.adminAutopostRoute => tr('autopost'),
+      AppNav.adminTrainingRoute => tr('training'),
+      AppNav.adminChatRoute => tr('chat'),
+      _ => route,
+    };
   }
 }

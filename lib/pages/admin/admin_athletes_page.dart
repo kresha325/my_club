@@ -24,7 +24,7 @@ class AdminAthletesPage extends StatelessWidget {
               onPressed: () async {
                 final result = await showDialog<Athlete>(
                   context: context,
-                  builder: (_) => const AthleteFormDialog(),
+                  builder: (context) => const AthleteFormDialog(),
                 );
                 if (result == null) return;
                 await deps.athletesRepository.create(result);
@@ -48,7 +48,8 @@ class AdminAthletesPage extends StatelessWidget {
                 return ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   itemCount: items.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 8),
                   itemBuilder: (context, index) {
                     final athlete = items[index];
                     return Card(
@@ -72,7 +73,7 @@ class AdminAthletesPage extends StatelessWidget {
                               onPressed: () async {
                                 final result = await showDialog<Athlete>(
                                   context: context,
-                                  builder: (_) =>
+                                  builder: (context) =>
                                       AthleteFormDialog(initial: athlete),
                                 );
                                 if (result == null) return;

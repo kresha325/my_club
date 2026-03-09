@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../models/autopost_job.dart';
+import '../../../utils/app_localizations.dart';
 import '../../../utils/date_time_picker.dart';
 import '../../../utils/validators.dart';
 
@@ -29,7 +30,7 @@ class _AutopostJobFormDialogState extends State<AutopostJobFormDialog> {
   }
 
   String _fmt(DateTime? dt) {
-    if (dt == null) return 'Not set (send immediately)';
+    if (dt == null) return AppLocalizations.t(context, 'notSetSendImmediately');
     return DateFormat.yMMMd().add_Hm().format(dt.toLocal());
   }
 
@@ -37,7 +38,7 @@ class _AutopostJobFormDialogState extends State<AutopostJobFormDialog> {
     final picked = await pickDateTime(
       context,
       initial: _scheduledAt,
-      helpText: 'Schedule autopost',
+      helpText: AppLocalizations.t(context, 'scheduleAutopostHelp'),
     );
     if (picked == null) return;
     setState(() => _scheduledAt = picked);
@@ -67,8 +68,10 @@ class _AutopostJobFormDialogState extends State<AutopostJobFormDialog> {
 
   @override
   Widget build(BuildContext context) {
+    String tr(String key) => AppLocalizations.t(context, key);
+
     return AlertDialog(
-      title: const Text('Schedule autopost'),
+      title: Text(tr('scheduleAutopost')),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 560),
         child: Form(
@@ -77,25 +80,34 @@ class _AutopostJobFormDialogState extends State<AutopostJobFormDialog> {
             child: Column(
               children: [
                 DropdownButtonFormField<String>(
-                  value: _contentType,
-                  items: const [
-                    DropdownMenuItem(value: 'news', child: Text('News')),
-                    DropdownMenuItem(value: 'event', child: Text('Event')),
+                  initialValue: _contentType,
+                  items: [
+                    DropdownMenuItem(
+                      value: 'news',
+                      child: Text(tr('newsItem')),
+                    ),
+                    DropdownMenuItem(
+                      value: 'event',
+                      child: Text(tr('eventItem')),
+                    ),
                     DropdownMenuItem(
                       value: 'gallery',
-                      child: Text('Gallery item'),
+                      child: Text(tr('galleryItem')),
                     ),
-                    DropdownMenuItem(value: 'match', child: Text('Match')),
+                    DropdownMenuItem(
+                      value: 'match',
+                      child: Text(tr('matchItem')),
+                    ),
                   ],
                   onChanged: (v) => setState(() => _contentType = v ?? 'news'),
-                  decoration: const InputDecoration(labelText: 'Content type'),
+                  decoration: InputDecoration(labelText: tr('contentType')),
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _contentIdCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Content document ID',
-                    helperText: 'Paste the Firestore doc id you want to post.',
+                  decoration: InputDecoration(
+                    labelText: tr('contentDocumentId'),
+                    helperText: tr('contentDocHelper'),
                   ),
                   validator: Validators.requiredField,
                 ),
@@ -103,7 +115,7 @@ class _AutopostJobFormDialogState extends State<AutopostJobFormDialog> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Platforms',
+                    tr('platforms'),
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
@@ -125,20 +137,18 @@ class _AutopostJobFormDialogState extends State<AutopostJobFormDialog> {
                 const SizedBox(height: 8),
                 Row(
                   children: [
-                    Expanded(child: Text('Scheduled: ${_fmt(_scheduledAt)}')),
+                    Expanded(
+                      child: Text('${tr('scheduled')}: ${_fmt(_scheduledAt)}'),
+                    ),
                     TextButton.icon(
                       onPressed: _pickSchedule,
                       icon: const Icon(Icons.schedule),
-                      label: const Text('Pick'),
+                      label: Text(tr('pick')),
                     ),
                   ],
                 ),
                 const SizedBox(height: 8),
-                const Text(
-                  'This is a placeholder queue.\n'
-                  'Firebase Functions will process jobs and call platform APIs '
-                  '(see functions/src/autopost/*).',
-                ),
+                Text(tr('placeholderQueueText')),
               ],
             ),
           ),
@@ -147,9 +157,9 @@ class _AutopostJobFormDialogState extends State<AutopostJobFormDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(tr('cancel')),
         ),
-        FilledButton(onPressed: _save, child: const Text('Create job')),
+        FilledButton(onPressed: _save, child: Text(tr('createJob'))),
       ],
     );
   }

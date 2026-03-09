@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../app/dependencies.dart';
 import '../../utils/app_constants.dart';
+import '../../utils/app_localizations.dart';
 import '../../utils/app_nav.dart';
 import '../../utils/validators.dart';
 import '../../widgets/buttons/primary_button.dart';
@@ -52,13 +53,15 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    String tr(String key) => AppLocalizations.t(context, key);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('${AppConstants.appName} — Admin Login'),
+        title: Text('${AppConstants.appName} - ${tr('adminLogin')}'),
         actions: [
           TextButton(
             onPressed: () => context.go(AppNav.homeRoute),
-            child: const Text('Public app'),
+            child: Text(tr('publicApp')),
           ),
           const SizedBox(width: 8),
         ],
@@ -75,13 +78,13 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Sign in',
+                    tr('signIn'),
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
                     controller: _emailCtrl,
-                    decoration: const InputDecoration(labelText: 'Email'),
+                    decoration: InputDecoration(labelText: tr('email')),
                     validator: Validators.requiredField,
                     keyboardType: TextInputType.emailAddress,
                     autofillHints: const [AutofillHints.email],
@@ -89,7 +92,7 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                   const SizedBox(height: 12),
                   TextFormField(
                     controller: _passwordCtrl,
-                    decoration: const InputDecoration(labelText: 'Password'),
+                    decoration: InputDecoration(labelText: tr('password')),
                     validator: Validators.requiredField,
                     obscureText: true,
                     autofillHints: const [AutofillHints.password],
@@ -105,16 +108,12 @@ class _AdminLoginPageState extends State<AdminLoginPage> {
                     const SizedBox(height: 12),
                   ],
                   PrimaryButton(
-                    label: _isSubmitting ? 'Signing in…' : 'Sign in',
+                    label: _isSubmitting ? tr('signingIn') : tr('signIn'),
                     icon: Icons.lock_open_outlined,
                     onPressed: _isSubmitting ? null : _signIn,
                   ),
                   const SizedBox(height: 12),
-                  const Text(
-                    'Note: This is an admin-only skeleton. '
-                    'Create an admin user in Firebase Auth, then allowlist the UID '
-                    'in Firestore at `admins/{uid}`.',
-                  ),
+                  Text(tr('adminLoginNote')),
                 ],
               ),
             ),

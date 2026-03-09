@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../app/dependencies.dart';
+import '../utils/app_localizations.dart';
 import '../widgets/section_header.dart';
 import '../widgets/home/home_ads_section.dart';
 import '../widgets/home/home_events_section.dart';
@@ -13,16 +14,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deps = DependenciesScope.of(context);
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return ListView(
       children: [
-        const SectionHeader(title: 'Latest News'),
+        SectionHeader(title: tr('latestNews')),
         HomeNewsSection(stream: deps.newsRepository.streamLatest()),
-        const SectionHeader(title: 'Upcoming Events'),
+        SectionHeader(title: tr('upcomingEvents')),
         HomeEventsSection(stream: deps.eventsRepository.streamUpcoming()),
-        const SectionHeader(title: 'Gallery'),
+        SectionHeader(title: tr('gallery')),
         HomeGallerySection(stream: deps.galleryRepository.streamLatest()),
-        const SectionHeader(title: 'Ads (placeholder)'),
+        SectionHeader(title: tr('adsPlaceholder')),
         HomeAdsSection(stream: deps.adsRepository.streamAll(limit: 5)),
         const SizedBox(height: 24),
       ],

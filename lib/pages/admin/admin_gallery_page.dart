@@ -25,7 +25,7 @@ class AdminGalleryPage extends StatelessWidget {
               onPressed: () async {
                 final result = await showDialog<GalleryItem>(
                   context: context,
-                  builder: (_) => const GalleryUploadDialog(),
+                  builder: (context) => const GalleryUploadDialog(),
                 );
                 if (result == null) return;
                 await deps.galleryRepository.create(result);
@@ -51,12 +51,18 @@ class AdminGalleryPage extends StatelessWidget {
                 return ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   itemCount: items.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 8),
                   itemBuilder: (context, index) {
                     final item = items[index];
                     final type = item.mediaType == GalleryMediaType.video
                         ? 'Video'
                         : 'Image';
+                    final platforms =
+                        item.autopostEnabled &&
+                            item.autopostPlatforms.isNotEmpty
+                        ? item.autopostPlatforms.join(', ')
+                        : 'off';
 
                     return Card(
                       child: ListTile(
@@ -70,7 +76,9 @@ class AdminGalleryPage extends StatelessWidget {
                               ? '(Empty caption)'
                               : item.caption,
                         ),
-                        subtitle: Text('$type • URL stored in Firestore'),
+                        subtitle: Text(
+                          '$type • Autopost: $platforms • URL stored in Firestore',
+                        ),
                         trailing: Wrap(
                           spacing: 8,
                           children: [
@@ -80,7 +88,7 @@ class AdminGalleryPage extends StatelessWidget {
                               onPressed: () async {
                                 final updated = await showDialog<GalleryItem>(
                                   context: context,
-                                  builder: (_) =>
+                                  builder: (context) =>
                                       GalleryItemEditDialog(initial: item),
                                 );
                                 if (updated == null) return;

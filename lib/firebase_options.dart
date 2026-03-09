@@ -31,55 +31,61 @@ class DefaultFirebaseOptions {
     }
   }
 
-  // Replace these placeholder values after running `flutterfire configure`.
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'REPLACE_ME',
-    appId: 'REPLACE_ME',
-    messagingSenderId: 'REPLACE_ME',
-    projectId: 'REPLACE_ME',
-    authDomain: 'REPLACE_ME',
-    storageBucket: 'REPLACE_ME',
+    apiKey: 'AIzaSyCx-OQCrgYywenDOWGh4JQ469vW86eW_Ao',
+    appId: '1:30619345639:web:91eeea5d6f78c579e9b842',
+    messagingSenderId: '30619345639',
+    projectId: 'my-club-cc4e2',
+    authDomain: 'my-club-cc4e2.firebaseapp.com',
+    storageBucket: 'my-club-cc4e2.firebasestorage.app',
+    measurementId: 'G-MT2QGVFC2R',
   );
 
+  // Replace these placeholder values after running `flutterfire configure`.
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'REPLACE_ME',
-    appId: 'REPLACE_ME',
-    messagingSenderId: 'REPLACE_ME',
-    projectId: 'REPLACE_ME',
-    storageBucket: 'REPLACE_ME',
+    apiKey: 'AIzaSyBMhFDEWJjHZ-Zx8t42WjnBhIlQ_rQagMU',
+    appId: '1:30619345639:android:22460a5786dccbebe9b842',
+    messagingSenderId: '30619345639',
+    projectId: 'my-club-cc4e2',
+    storageBucket: 'my-club-cc4e2.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'REPLACE_ME',
-    appId: 'REPLACE_ME',
-    messagingSenderId: 'REPLACE_ME',
-    projectId: 'REPLACE_ME',
-    storageBucket: 'REPLACE_ME',
+    apiKey: 'AIzaSyDqAIOZmh8h5Ankm7pyqiCd0iLbyRP4tYw',
+    appId: '1:30619345639:ios:cfcb8052b45ef289e9b842',
+    messagingSenderId: '30619345639',
+    projectId: 'my-club-cc4e2',
+    storageBucket: 'my-club-cc4e2.firebasestorage.app',
     iosBundleId: 'com.example.myClub',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'REPLACE_ME',
-    appId: 'REPLACE_ME',
-    messagingSenderId: 'REPLACE_ME',
-    projectId: 'REPLACE_ME',
-    storageBucket: 'REPLACE_ME',
+    apiKey: 'AIzaSyDqAIOZmh8h5Ankm7pyqiCd0iLbyRP4tYw',
+    appId: '1:30619345639:ios:cfcb8052b45ef289e9b842',
+    messagingSenderId: '30619345639',
+    projectId: 'my-club-cc4e2',
+    storageBucket: 'my-club-cc4e2.firebasestorage.app',
     iosBundleId: 'com.example.myClub',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'REPLACE_ME',
-    appId: 'REPLACE_ME',
-    messagingSenderId: 'REPLACE_ME',
-    projectId: 'REPLACE_ME',
-    storageBucket: 'REPLACE_ME',
+    apiKey: 'AIzaSyCx-OQCrgYywenDOWGh4JQ469vW86eW_Ao',
+    appId: '1:30619345639:web:243dce8fd5538ca4e9b842',
+    messagingSenderId: '30619345639',
+    projectId: 'my-club-cc4e2',
+    authDomain: 'my-club-cc4e2.firebaseapp.com',
+    storageBucket: 'my-club-cc4e2.firebasestorage.app',
+    measurementId: 'G-0MR3F06CXC',
   );
 
   static const FirebaseOptions linux = FirebaseOptions(
-    apiKey: 'REPLACE_ME',
-    appId: 'REPLACE_ME',
-    messagingSenderId: 'REPLACE_ME',
-    projectId: 'REPLACE_ME',
-    storageBucket: 'REPLACE_ME',
+    apiKey: 'AIzaSyCx-OQCrgYywenDOWGh4JQ469vW86eW_Ao',
+    appId: '1:30619345639:web:243dce8fd5538ca4e9b842',
+    messagingSenderId: '30619345639',
+    projectId: 'my-club-cc4e2',
+    authDomain: 'my-club-cc4e2.firebaseapp.com',
+    storageBucket: 'my-club-cc4e2.firebasestorage.app',
+    measurementId: 'G-0MR3F06CXC',
   );
 }

@@ -22,10 +22,11 @@ class AdBanner extends StatelessWidget {
               height: 120,
               width: double.infinity,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => const PlaceholderImage(
-                height: 120,
-                icon: Icons.campaign_outlined,
-              ),
+              errorBuilder: (context, error, stackTrace) =>
+                  const PlaceholderImage(
+                    height: 120,
+                    icon: Icons.campaign_outlined,
+                  ),
             ),
           Positioned(
             left: 12,
@@ -33,7 +34,7 @@ class AdBanner extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.55),
+                color: Colors.black.withValues(alpha: 0.55),
                 borderRadius: BorderRadius.circular(999),
               ),
               child: Text(

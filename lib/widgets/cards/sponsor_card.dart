@@ -21,11 +21,12 @@ class SponsorCard extends StatelessWidget {
                   width: 40,
                   height: 40,
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => const PlaceholderImage(
-                    height: 40,
-                    width: 40,
-                    icon: Icons.store,
-                  ),
+                  errorBuilder: (context, error, stackTrace) =>
+                      const PlaceholderImage(
+                        height: 40,
+                        width: 40,
+                        icon: Icons.store,
+                      ),
                 ),
               ),
         title: Text(

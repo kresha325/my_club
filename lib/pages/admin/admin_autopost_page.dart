@@ -50,7 +50,7 @@ class AdminAutopostPage extends StatelessWidget {
               onPressed: () async {
                 final job = await showDialog<AutopostJob>(
                   context: context,
-                  builder: (_) => const AutopostJobFormDialog(),
+                  builder: (context) => const AutopostJobFormDialog(),
                 );
                 if (job == null) return;
                 await deps.autopostJobsRepository.create(job);
@@ -77,7 +77,8 @@ class AdminAutopostPage extends StatelessWidget {
                 return ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   itemCount: jobs.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 8),
                   itemBuilder: (context, index) {
                     final job = jobs[index];
                     return Card(

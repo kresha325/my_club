@@ -24,7 +24,7 @@ class AdminMatchesPage extends StatelessWidget {
               onPressed: () async {
                 final result = await showDialog<ClubMatch>(
                   context: context,
-                  builder: (_) => const MatchFormDialog(),
+                  builder: (context) => const MatchFormDialog(),
                 );
                 if (result == null) return;
                 await deps.matchesRepository.create(result);
@@ -49,7 +49,8 @@ class AdminMatchesPage extends StatelessWidget {
                 return ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   itemCount: items.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 8),
                   itemBuilder: (context, index) {
                     final match = items[index];
                     return Card(
@@ -73,7 +74,7 @@ class AdminMatchesPage extends StatelessWidget {
                               onPressed: () async {
                                 final result = await showDialog<ClubMatch>(
                                   context: context,
-                                  builder: (_) =>
+                                  builder: (context) =>
                                       MatchFormDialog(initial: match),
                                 );
                                 if (result == null) return;

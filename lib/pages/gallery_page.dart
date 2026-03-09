@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../app/dependencies.dart';
 import '../models/gallery_item.dart';
+import '../utils/app_localizations.dart';
 import '../widgets/cards/media_card.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/section_header.dart';
@@ -12,19 +13,20 @@ class GalleryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deps = DependenciesScope.of(context);
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return Column(
       children: [
-        const SectionHeader(title: 'Gallery'),
+        SectionHeader(title: tr('gallery')),
         Expanded(
           child: StreamBuilder<List<GalleryItem>>(
             stream: deps.galleryRepository.streamLatest(),
             builder: (context, snapshot) {
               final items = snapshot.data ?? const <GalleryItem>[];
               if (items.isEmpty) {
-                return const EmptyState(
-                  title: 'No gallery items yet',
-                  subtitle: 'Admin will upload photos and videos.',
+                return EmptyState(
+                  title: tr('noGalleryYet'),
+                  subtitle: tr('galleryEmptySubtitle'),
                   icon: Icons.photo_library_outlined,
                 );
               }

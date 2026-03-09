@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/athlete.dart';
+import '../../../utils/app_localizations.dart';
 import '../../../utils/validators.dart';
 
 class AthleteFormDialog extends StatefulWidget {
@@ -58,9 +59,10 @@ class _AthleteFormDialogState extends State<AthleteFormDialog> {
   @override
   Widget build(BuildContext context) {
     final isEdit = widget.initial != null;
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return AlertDialog(
-      title: Text(isEdit ? 'Edit athlete' : 'Add athlete'),
+      title: Text(isEdit ? tr('editAthlete') : tr('addAthlete')),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 520),
         child: Form(
@@ -70,38 +72,33 @@ class _AthleteFormDialogState extends State<AthleteFormDialog> {
               children: [
                 TextFormField(
                   controller: _nameCtrl,
-                  decoration: const InputDecoration(labelText: 'Full name'),
+                  decoration: InputDecoration(labelText: tr('fullName')),
                   validator: Validators.requiredField,
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _positionCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Position (optional)',
+                  decoration: InputDecoration(
+                    labelText: tr('positionOptional'),
                   ),
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _numberCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Number (optional)',
-                  ),
+                  decoration: InputDecoration(labelText: tr('numberOptional')),
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _photoUrlCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Photo URL (optional)',
-                    helperText:
-                        'Tip: upload in Admin → Gallery and paste the URL.',
+                  decoration: InputDecoration(
+                    labelText: tr('photoUrlOptional'),
+                    helperText: tr('galleryUrlTip'),
                   ),
                 ),
                 const SizedBox(height: 12),
                 TextFormField(
                   controller: _bioCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Bio (optional)',
-                  ),
+                  decoration: InputDecoration(labelText: tr('bioOptional')),
                   maxLines: 4,
                 ),
               ],
@@ -112,9 +109,9 @@ class _AthleteFormDialogState extends State<AthleteFormDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(tr('cancel')),
         ),
-        FilledButton(onPressed: _save, child: const Text('Save')),
+        FilledButton(onPressed: _save, child: Text(tr('save'))),
       ],
     );
   }

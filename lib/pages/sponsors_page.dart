@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../app/dependencies.dart';
 import '../models/ad.dart';
 import '../models/sponsor.dart';
+import '../utils/app_localizations.dart';
 import '../widgets/cards/ad_banner.dart';
 import '../widgets/cards/sponsor_card.dart';
 import '../widgets/empty_state.dart';
@@ -14,18 +15,19 @@ class SponsorsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final deps = DependenciesScope.of(context);
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return ListView(
       children: [
-        const SectionHeader(title: 'Sponsors'),
+        SectionHeader(title: tr('sponsors')),
         StreamBuilder<List<Sponsor>>(
           stream: deps.sponsorsRepository.streamAll(),
           builder: (context, snapshot) {
             final sponsors = snapshot.data ?? const <Sponsor>[];
             if (sponsors.isEmpty) {
-              return const EmptyState(
-                title: 'No sponsors yet',
-                subtitle: 'Sponsor banners will appear here.',
+              return EmptyState(
+                title: tr('noSponsorsYet'),
+                subtitle: tr('sponsorsEmptySubtitle'),
                 icon: Icons.handshake_outlined,
               );
             }
@@ -42,15 +44,15 @@ class SponsorsPage extends StatelessWidget {
             );
           },
         ),
-        const SectionHeader(title: 'Ads'),
+        SectionHeader(title: tr('ads')),
         StreamBuilder<List<Ad>>(
           stream: deps.adsRepository.streamAll(limit: 50),
           builder: (context, snapshot) {
             final ads = snapshot.data ?? const <Ad>[];
             if (ads.isEmpty) {
-              return const EmptyState(
-                title: 'No ads yet',
-                subtitle: 'Ads placeholders can be configured by admin.',
+              return EmptyState(
+                title: tr('noAdsYet'),
+                subtitle: tr('adsEmptySubtitle'),
                 icon: Icons.campaign_outlined,
               );
             }

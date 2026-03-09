@@ -62,3 +62,23 @@ Inside `lib/`:
 - Autoposting is intentionally **server-side** (Firebase Functions) to keep API
   keys and access tokens off the client.
 - Rules/config files are included as a skeleton; tighten them before production.
+
+## Automatic social autopost
+
+When admin creates new content in these collections, a queued job is created
+automatically in `autopost_jobs`:
+
+- `news`
+- `events`
+- `matches`
+- `gallery`
+- `ads`
+- `announcements`
+
+Default platforms are `facebook`, `instagram`, `youtube`.
+
+Optional per-document controls:
+
+- `autopostEnabled: false` -> skip autopost for that document
+- `autopostPlatforms: ["facebook", "instagram", "youtube"]` -> override defaults
+- `autopostAt: <Firestore Timestamp>` -> schedule posting for a future time

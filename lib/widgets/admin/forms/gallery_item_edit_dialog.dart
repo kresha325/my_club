@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/gallery_item.dart';
+import '../../../utils/app_localizations.dart';
 
 class GalleryItemEditDialog extends StatefulWidget {
   const GalleryItemEditDialog({required this.initial, super.key});
@@ -43,9 +44,10 @@ class _GalleryItemEditDialogState extends State<GalleryItemEditDialog> {
   @override
   Widget build(BuildContext context) {
     final isVideo = widget.initial.mediaType == GalleryMediaType.video;
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return AlertDialog(
-      title: const Text('Edit gallery item'),
+      title: Text(tr('editGalleryItem')),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 560),
         child: Form(
@@ -55,25 +57,20 @@ class _GalleryItemEditDialogState extends State<GalleryItemEditDialog> {
               children: [
                 TextFormField(
                   controller: _captionCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Caption (optional)',
-                  ),
+                  decoration: InputDecoration(labelText: tr('captionOptional')),
                   maxLines: 3,
                 ),
                 const SizedBox(height: 12),
                 if (isVideo)
                   TextFormField(
                     controller: _thumbnailCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Thumbnail URL (optional)',
-                      helperText:
-                          'For videos, add a thumbnail URL (or generate one via Cloud Functions).',
+                    decoration: InputDecoration(
+                      labelText: tr('thumbnailUrlOptional'),
+                      helperText: tr('thumbnailHelper'),
                     ),
                   ),
                 const SizedBox(height: 8),
-                const Text(
-                  'Developer: store additional metadata here (tags, categories, etc).',
-                ),
+                Text(tr('galleryMetaTodo')),
               ],
             ),
           ),
@@ -82,9 +79,9 @@ class _GalleryItemEditDialogState extends State<GalleryItemEditDialog> {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: const Text('Cancel'),
+          child: Text(tr('cancel')),
         ),
-        FilledButton(onPressed: _save, child: const Text('Save')),
+        FilledButton(onPressed: _save, child: Text(tr('save'))),
       ],
     );
   }
