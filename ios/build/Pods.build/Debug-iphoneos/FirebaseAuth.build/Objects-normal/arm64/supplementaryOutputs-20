@@ -1,0 +1,121 @@
+{
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/AuthProvider/EmailAuthProvider.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailAuthProvider.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailAuthProvider.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailAuthProvider.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailAuthProvider.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailAuthProvider.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/AuthProvider/FacebookAuthProvider.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FacebookAuthProvider.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FacebookAuthProvider.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FacebookAuthProvider.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FacebookAuthProvider.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FacebookAuthProvider.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/AuthProvider/FederatedAuthProvider.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FederatedAuthProvider.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FederatedAuthProvider.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FederatedAuthProvider.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FederatedAuthProvider.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FederatedAuthProvider.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Backend/RPC/CreateAuthURIRequest.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIRequest.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIRequest.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIRequest.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIRequest.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIRequest.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Backend/RPC/CreateAuthURIResponse.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIResponse.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIResponse.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIResponse.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIResponse.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/CreateAuthURIResponse.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Backend/RPC/DeleteAccountRequest.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountRequest.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountRequest.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountRequest.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountRequest.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountRequest.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Backend/RPC/DeleteAccountResponse.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountResponse.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountResponse.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountResponse.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountResponse.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/DeleteAccountResponse.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Backend/RPC/EmailLinkSignInRequest.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInRequest.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInRequest.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInRequest.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInRequest.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInRequest.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Backend/RPC/EmailLinkSignInResponse.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInResponse.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInResponse.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInResponse.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInResponse.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/EmailLinkSignInResponse.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Backend/RPC/MultiFactor/Enroll/FinalizeMFAEnrollmentRequest.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentRequest.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentRequest.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentRequest.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentRequest.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentRequest.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Backend/RPC/MultiFactor/Enroll/FinalizeMFAEnrollmentResponse.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentResponse.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentResponse.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentResponse.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentResponse.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFAEnrollmentResponse.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Backend/RPC/MultiFactor/SignIn/FinalizeMFASignInRequest.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFASignInRequest.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFASignInRequest.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFASignInRequest.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFASignInRequest.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/FinalizeMFASignInRequest.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Base64URLEncodedStringExtension.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/Base64URLEncodedStringExtension.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/Base64URLEncodedStringExtension.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/Base64URLEncodedStringExtension.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/Base64URLEncodedStringExtension.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/Base64URLEncodedStringExtension.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Storage/AuthUserDefaults.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthUserDefaults.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthUserDefaults.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthUserDefaults.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthUserDefaults.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthUserDefaults.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Utilities/AuthWebUtils.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebUtils.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebUtils.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebUtils.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebUtils.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebUtils.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Utilities/AuthWebView.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebView.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebView.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebView.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebView.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebView.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseAuth/FirebaseAuth/Sources/Swift/Utilities/AuthWebViewController.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebViewController.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebViewController.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebViewController.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebViewController.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseAuth.build/Objects-normal/arm64/AuthWebViewController.swiftdeps"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/Internal/StorageDeleteTask.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDeleteTask.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDeleteTask.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDeleteTask.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDeleteTask.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDeleteTask.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageConstants.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageConstants.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageConstants.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageConstants.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageConstants.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageConstants.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/FirebaseStorage/FirebaseStorage/Sources/StorageDownloadTask.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDownloadTask.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDownloadTask.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDownloadTask.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDownloadTask.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/FirebaseStorage.build/Objects-normal/arm64/StorageDownloadTask.swiftdeps"
+  }
+}

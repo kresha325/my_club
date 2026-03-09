@@ -1,0 +1,54 @@
+import 'package:flutter/material.dart';
+
+import '../app/dependencies.dart';
+import '../models/club_event.dart';
+import '../widgets/cards/event_card.dart';
+import '../widgets/empty_state.dart';
+import '../widgets/section_header.dart';
+
+class EventsPage extends StatelessWidget {
+  const EventsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final deps = DependenciesScope.of(context);
+
+    return Column(
+      children: [
+        const SectionHeader(title: 'Events'),
+        Expanded(
+          child: StreamBuilder<List<ClubEvent>>(
+            stream: deps.eventsRepository.streamUpcoming(),
+            builder: (context, snapshot) {
+              final events = snapshot.data ?? const <ClubEvent>[];
+              if (events.isEmpty) {
+                return const EmptyState(
+                  title: 'No events yet',
+                  subtitle: 'Add tournaments and events from the admin panel.',
+                  icon: Icons.event_outlined,
+                );
+              }
+              final crossAxisCount = MediaQuery.of(context).size.width >= 900
+                  ? 2
+                  : 1;
+              return Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+                child: GridView.builder(
+                  itemCount: events.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    mainAxisExtent: 210,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                  ),
+                  itemBuilder: (context, index) =>
+                      EventCard(event: events[index]),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}

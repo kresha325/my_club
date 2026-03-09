@@ -1,0 +1,23 @@
+{
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/DKPhotoGallery/DKPhotoGallery/DKPhotoPreviewFactory.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPreviewFactory.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPreviewFactory.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPreviewFactory.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPreviewFactory.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoPreviewFactory.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoProgressIndicator.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicator.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicator.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicator.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicator.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicator.swiftdeps"
+  },
+  "/Users/kresha/Documents/New project/my_club/ios/Pods/DKPhotoGallery/DKPhotoGallery/Preview/DKPhotoProgressIndicatorProtocol.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicatorProtocol.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicatorProtocol.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicatorProtocol.dia",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicatorProtocol.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/DKPhotoGallery.build/Objects-normal/arm64/DKPhotoProgressIndicatorProtocol.swiftdeps"
+  }
+}

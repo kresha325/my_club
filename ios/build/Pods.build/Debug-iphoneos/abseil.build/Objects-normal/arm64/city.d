@@ -1,0 +1,18 @@
+dependencies: \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/hash/internal/city.cc \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/Target\ Support\ Files/abseil/abseil-prefix.pch \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/hash/internal/city.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/config.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/options.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/policy_checks.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/internal/endian.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/casts.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/internal/identity.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/macros.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/attributes.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/optimization.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/port.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/meta/type_traits.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/internal/unaligned_access.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/nullability.h \
+  /Users/kresha/Documents/New\ project/my_club/ios/Pods/abseil/absl/base/internal/nullability_impl.h

@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      // Skeleton admin allowlist. Create `admins/{uid}` docs.
+      return signedIn()
+        && (
+          request.auth.token.admin == true
+          || exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+        );
+    }
+
+    // Public-read, admin-write collections
+    match /athletes/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /news/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /events/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /matches/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /gallery/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /sponsors/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    match /ads/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Admin allowlist
+    match /admins/{uid} {
+      allow read, write: if isAdmin();
+    }
+
+    // Autopost job queue (admin only)
+    match /autopost_jobs/{jobId} {
+      allow read, write: if isAdmin();
+    }
+  }
+}

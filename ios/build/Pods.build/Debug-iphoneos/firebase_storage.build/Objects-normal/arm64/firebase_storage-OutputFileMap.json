@@ -1,0 +1,39 @@
+{
+  "" : {
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/firebase_storage-primary.dia",
+    "emit-module-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/firebase_storage-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/firebase_storage-primary-emit-module.dia",
+    "pch" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/firebase_storage-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/firebase_storage-primary.swiftdeps"
+  },
+  "/Users/kresha/.pub-cache/hosted/pub.dev/firebase_storage-13.1.0/ios/firebase_storage/Sources/firebase_storage/FLTFirebaseStoragePlugin.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FLTFirebaseStoragePlugin.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FLTFirebaseStoragePlugin.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FLTFirebaseStoragePlugin.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FLTFirebaseStoragePlugin.o",
+    "llvm-bc" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FLTFirebaseStoragePlugin.bc",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FLTFirebaseStoragePlugin.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FLTFirebaseStoragePlugin.swiftdeps",
+    "swiftmodule" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FLTFirebaseStoragePlugin~partial.swiftmodule"
+  },
+  "/Users/kresha/.pub-cache/hosted/pub.dev/firebase_storage-13.1.0/ios/firebase_storage/Sources/firebase_storage/FirebaseStorageMessages.g.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FirebaseStorageMessages.g.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FirebaseStorageMessages.g.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FirebaseStorageMessages.g.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FirebaseStorageMessages.g.o",
+    "llvm-bc" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FirebaseStorageMessages.g.bc",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FirebaseStorageMessages.g.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FirebaseStorageMessages.g.swiftdeps",
+    "swiftmodule" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/FirebaseStorageMessages.g~partial.swiftmodule"
+  },
+  "/Users/kresha/.pub-cache/hosted/pub.dev/firebase_storage-13.1.0/ios/firebase_storage/Sources/firebase_storage/TaskStateChannelStreamHandler.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/TaskStateChannelStreamHandler.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/TaskStateChannelStreamHandler.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/TaskStateChannelStreamHandler.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/TaskStateChannelStreamHandler.o",
+    "llvm-bc" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/TaskStateChannelStreamHandler.bc",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/TaskStateChannelStreamHandler.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/TaskStateChannelStreamHandler.swiftdeps",
+    "swiftmodule" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/firebase_storage.build/Objects-normal/arm64/TaskStateChannelStreamHandler~partial.swiftmodule"
+  }
+}

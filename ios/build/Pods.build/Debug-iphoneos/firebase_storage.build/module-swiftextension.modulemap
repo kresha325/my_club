@@ -1,0 +1,5 @@
+
+module firebase_storage.Swift {
+  header "firebase_storage-Swift.h"
+  requires objc
+}

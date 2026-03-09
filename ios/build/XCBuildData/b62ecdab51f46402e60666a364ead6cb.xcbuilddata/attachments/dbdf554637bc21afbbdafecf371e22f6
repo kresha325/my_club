@@ -1,0 +1,59 @@
+{
+  "" : {
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/cloud_functions-primary.dia",
+    "emit-module-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/cloud_functions-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/cloud_functions-primary-emit-module.dia",
+    "pch" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/cloud_functions-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/cloud_functions-primary.swiftdeps"
+  },
+  "/Users/kresha/.pub-cache/hosted/pub.dev/cloud_functions-6.0.7/ios/cloud_functions/Sources/cloud_functions/CloudFunctionsMessages.g.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CloudFunctionsMessages.g.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CloudFunctionsMessages.g.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CloudFunctionsMessages.g.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CloudFunctionsMessages.g.o",
+    "llvm-bc" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CloudFunctionsMessages.g.bc",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CloudFunctionsMessages.g.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CloudFunctionsMessages.g.swiftdeps",
+    "swiftmodule" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CloudFunctionsMessages.g~partial.swiftmodule"
+  },
+  "/Users/kresha/.pub-cache/hosted/pub.dev/cloud_functions-6.0.7/ios/cloud_functions/Sources/cloud_functions/CodecUtility.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CodecUtility.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CodecUtility.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CodecUtility.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CodecUtility.o",
+    "llvm-bc" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CodecUtility.bc",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CodecUtility.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CodecUtility.swiftdeps",
+    "swiftmodule" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/CodecUtility~partial.swiftmodule"
+  },
+  "/Users/kresha/.pub-cache/hosted/pub.dev/cloud_functions-6.0.7/ios/cloud_functions/Sources/cloud_functions/Constants.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/Constants.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/Constants.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/Constants.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/Constants.o",
+    "llvm-bc" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/Constants.bc",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/Constants.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/Constants.swiftdeps",
+    "swiftmodule" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/Constants~partial.swiftmodule"
+  },
+  "/Users/kresha/.pub-cache/hosted/pub.dev/cloud_functions-6.0.7/ios/cloud_functions/Sources/cloud_functions/FirebaseFunctionsPlugin.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FirebaseFunctionsPlugin.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FirebaseFunctionsPlugin.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FirebaseFunctionsPlugin.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FirebaseFunctionsPlugin.o",
+    "llvm-bc" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FirebaseFunctionsPlugin.bc",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FirebaseFunctionsPlugin.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FirebaseFunctionsPlugin.swiftdeps",
+    "swiftmodule" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FirebaseFunctionsPlugin~partial.swiftmodule"
+  },
+  "/Users/kresha/.pub-cache/hosted/pub.dev/cloud_functions-6.0.7/ios/cloud_functions/Sources/cloud_functions/FunctionsStreamHandler.swift" : {
+    "const-values" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FunctionsStreamHandler.swiftconstvalues",
+    "dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FunctionsStreamHandler.d",
+    "diagnostics" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FunctionsStreamHandler.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FunctionsStreamHandler.o",
+    "llvm-bc" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FunctionsStreamHandler.bc",
+    "object" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FunctionsStreamHandler.o",
+    "swift-dependencies" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FunctionsStreamHandler.swiftdeps",
+    "swiftmodule" : "/Users/kresha/Documents/New project/my_club/ios/build/Pods.build/Debug-iphoneos/cloud_functions.build/Objects-normal/arm64/FunctionsStreamHandler~partial.swiftmodule"
+  }
+}
