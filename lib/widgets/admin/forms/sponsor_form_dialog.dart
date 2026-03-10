@@ -184,29 +184,29 @@ class _SponsorFormDialogState extends State<SponsorFormDialog> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                RadioListTile<_LogoSourceMode>(
-                  value: _LogoSourceMode.publicUrl,
+                RadioGroup<_LogoSourceMode>(
                   groupValue: _logoSourceMode,
-                  onChanged: _isSaving
-                      ? null
-                      : (v) => setState(() {
-                          _logoSourceMode = v!;
-                          _error = '';
-                        }),
-                  title: Text(tr('usePublicUrl')),
-                  contentPadding: EdgeInsets.zero,
-                ),
-                RadioListTile<_LogoSourceMode>(
-                  value: _LogoSourceMode.uploadPhoto,
-                  groupValue: _logoSourceMode,
-                  onChanged: _isSaving
-                      ? null
-                      : (v) => setState(() {
-                          _logoSourceMode = v!;
-                          _error = '';
-                        }),
-                  title: Text(tr('uploadPhoto')),
-                  contentPadding: EdgeInsets.zero,
+                  onChanged: (v) {
+                    if (_isSaving || v == null) return;
+                    setState(() {
+                      _logoSourceMode = v;
+                      _error = '';
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      RadioListTile<_LogoSourceMode>(
+                        value: _LogoSourceMode.publicUrl,
+                        title: Text(tr('usePublicUrl')),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                      RadioListTile<_LogoSourceMode>(
+                        value: _LogoSourceMode.uploadPhoto,
+                        title: Text(tr('uploadPhoto')),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    ],
+                  ),
                 ),
                 if (_logoSourceMode == _LogoSourceMode.publicUrl)
                   TextFormField(

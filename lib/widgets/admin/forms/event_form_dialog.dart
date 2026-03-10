@@ -240,29 +240,29 @@ class _EventFormDialogState extends State<EventFormDialog> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                RadioListTile<_BannerSourceMode>(
-                  value: _BannerSourceMode.publicUrl,
+                RadioGroup<_BannerSourceMode>(
                   groupValue: _bannerSourceMode,
-                  onChanged: _isSaving
-                      ? null
-                      : (v) => setState(() {
-                          _bannerSourceMode = v!;
-                          _error = '';
-                        }),
-                  title: Text(tr('usePublicUrl')),
-                  contentPadding: EdgeInsets.zero,
-                ),
-                RadioListTile<_BannerSourceMode>(
-                  value: _BannerSourceMode.uploadPhoto,
-                  groupValue: _bannerSourceMode,
-                  onChanged: _isSaving
-                      ? null
-                      : (v) => setState(() {
-                          _bannerSourceMode = v!;
-                          _error = '';
-                        }),
-                  title: Text(tr('uploadPhoto')),
-                  contentPadding: EdgeInsets.zero,
+                  onChanged: (v) {
+                    if (_isSaving || v == null) return;
+                    setState(() {
+                      _bannerSourceMode = v;
+                      _error = '';
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      RadioListTile<_BannerSourceMode>(
+                        value: _BannerSourceMode.publicUrl,
+                        title: Text(tr('usePublicUrl')),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                      RadioListTile<_BannerSourceMode>(
+                        value: _BannerSourceMode.uploadPhoto,
+                        title: Text(tr('uploadPhoto')),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    ],
+                  ),
                 ),
                 if (_bannerSourceMode == _BannerSourceMode.publicUrl)
                   TextFormField(

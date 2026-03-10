@@ -23,7 +23,7 @@ class AthleteCard extends StatelessWidget {
                   athlete.photoUrl,
                   width: 48,
                   height: 48,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) =>
                       const PlaceholderImage(height: 48, width: 48),
                 ),

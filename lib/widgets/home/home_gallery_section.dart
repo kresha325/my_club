@@ -22,26 +22,25 @@ class HomeGallerySection extends StatelessWidget {
             icon: Icons.photo_library_outlined,
           );
         }
-        final width = MediaQuery.of(context).size.width;
-        final crossAxisCount = width >= 1100
-            ? 4
-            : width >= 800
-            ? 3
-            : 2;
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: GridView.builder(
-            itemCount: items.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              mainAxisExtent: 220,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-            ),
-            itemBuilder: (context, index) => MediaCard(item: items[index]),
-          ),
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = constraints.maxWidth < 700
+                ? constraints.maxWidth - 32
+                : 280.0;
+            return SizedBox(
+              height: 230,
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                scrollDirection: Axis.horizontal,
+                itemCount: items.length,
+                separatorBuilder: (context, index) => const SizedBox(width: 12),
+                itemBuilder: (context, index) => SizedBox(
+                  width: cardWidth,
+                  child: MediaCard(item: items[index]),
+                ),
+              ),
+            );
+          },
         );
       },
     );

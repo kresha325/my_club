@@ -28,7 +28,7 @@ class MediaCard extends StatelessWidget {
                   item.thumbnailUrl,
                   height: 140,
                   width: double.infinity,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) =>
                       PlaceholderImage(height: 140, icon: icon),
                 ),

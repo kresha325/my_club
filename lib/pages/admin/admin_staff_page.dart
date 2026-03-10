@@ -1,107 +1,97 @@
 import 'package:flutter/material.dart';
 
 import '../../app/dependencies.dart';
-import '../../models/athlete.dart';
+import '../../models/staff_member.dart';
+import '../../utils/app_localizations.dart';
 import '../../widgets/admin/admin_access_gate.dart';
 import '../../widgets/admin/confirm_delete_dialog.dart';
-import '../../widgets/admin/forms/athlete_form_dialog.dart';
+import '../../widgets/admin/forms/staff_form_dialog.dart';
 import '../../widgets/empty_state.dart';
 import '../../widgets/section_header.dart';
 
-class AdminAthletesPage extends StatelessWidget {
-  const AdminAthletesPage({super.key});
+class AdminStaffPage extends StatelessWidget {
+  const AdminStaffPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final deps = DependenciesScope.of(context);
+    String tr(String key) => AppLocalizations.t(context, key);
 
     return AdminAccessGate(
       child: Column(
         children: [
           SectionHeader(
-            title: 'Athletes',
+            title: tr('staffAdmin'),
             trailing: FilledButton.icon(
               onPressed: () async {
-                final result = await showDialog<Athlete>(
+                final result = await showDialog<StaffMember>(
                   context: context,
-                  builder: (context) => const AthleteFormDialog(),
+                  builder: (context) => const StaffFormDialog(),
                 );
                 if (result == null) return;
-                await deps.athletesRepository.create(result);
+                await deps.staffRepository.create(result);
               },
               icon: const Icon(Icons.add),
-              label: const Text('Add'),
+              label: Text(tr('add')),
             ),
           ),
           Expanded(
-            child: StreamBuilder<List<Athlete>>(
-              stream: deps.athletesRepository.streamAll(),
+            child: StreamBuilder<List<StaffMember>>(
+              stream: deps.staffRepository.streamAll(),
               builder: (context, snapshot) {
-                final items = snapshot.data ?? const <Athlete>[];
+                final items = snapshot.data ?? const <StaffMember>[];
                 if (items.isEmpty) {
-                  return const EmptyState(
-                    title: 'No athletes',
-                    subtitle: 'Add athletes so the Team page can display them.',
-                    icon: Icons.groups_outlined,
+                  return EmptyState(
+                    title: tr('noStaffAdmin'),
+                    subtitle: tr('staffAdminSubtitle'),
+                    icon: Icons.badge_outlined,
                   );
                 }
+
                 return ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
                   itemCount: items.length,
                   separatorBuilder: (context, index) =>
                       const SizedBox(height: 8),
                   itemBuilder: (context, index) {
-                    final athlete = items[index];
+                    final item = items[index];
                     return Card(
                       child: ListTile(
                         title: Text(
-                          athlete.fullName.isEmpty
-                              ? '(Empty name)'
-                              : athlete.fullName,
+                          item.fullName.isEmpty ? tr('noTitle') : item.fullName,
                         ),
                         subtitle: Text(
-                          [
-                                if (athlete.position.trim().isNotEmpty)
-                                  'Style: ${athlete.position.trim()}',
-                                if (athlete.number.trim().isNotEmpty)
-                                  'Weight: ${athlete.number.trim()}',
-                              ].join(' | ').isEmpty
-                              ? 'Style/Weight: (not set)'
-                              : [
-                                  if (athlete.position.trim().isNotEmpty)
-                                    'Style: ${athlete.position.trim()}',
-                                  if (athlete.number.trim().isNotEmpty)
-                                    'Weight: ${athlete.number.trim()}',
-                                ].join(' | '),
+                          item.position.isEmpty
+                              ? tr('positionOptional')
+                              : '${tr('positionOptional')}: ${item.position}',
                         ),
                         trailing: Wrap(
                           spacing: 8,
                           children: [
                             IconButton(
-                              tooltip: 'Edit',
+                              tooltip: tr('edit'),
                               icon: const Icon(Icons.edit_outlined),
                               onPressed: () async {
-                                final result = await showDialog<Athlete>(
+                                final result = await showDialog<StaffMember>(
                                   context: context,
                                   builder: (context) =>
-                                      AthleteFormDialog(initial: athlete),
+                                      StaffFormDialog(initial: item),
                                 );
                                 if (result == null) return;
-                                await deps.athletesRepository.update(result);
+                                await deps.staffRepository.update(result);
                               },
                             ),
                             IconButton(
-                              tooltip: 'Delete',
+                              tooltip: tr('delete'),
                               icon: const Icon(Icons.delete_outline),
                               onPressed: () async {
                                 final confirmed = await showConfirmDeleteDialog(
                                   context,
-                                  entityLabel: 'athlete "${athlete.fullName}"',
+                                  entityLabel:
+                                      '${tr('staffEntityLabel')} "${item.fullName}"',
                                 );
                                 if (!confirmed) return;
-                                await deps.athletesRepository.delete(
-                                  athlete.id,
-                                );
+                                await deps.staffRepository.delete(item.id);
                               },
                             ),
                           ],

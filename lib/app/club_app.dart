@@ -44,6 +44,7 @@ class _ClubAppState extends State<ClubApp> {
               builder: (context, mode, child) {
                 return MaterialApp.router(
                   title: AppConstants.appName,
+                  debugShowCheckedModeBanner: false,
                   theme: AppTheme.light(),
                   darkTheme: AppTheme.dark(),
                   themeMode: mode,

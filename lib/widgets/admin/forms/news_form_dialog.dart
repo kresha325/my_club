@@ -192,29 +192,29 @@ class _NewsFormDialogState extends State<NewsFormDialog> {
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
-                RadioListTile<_CoverSourceMode>(
-                  value: _CoverSourceMode.publicUrl,
+                RadioGroup<_CoverSourceMode>(
                   groupValue: _coverSourceMode,
-                  onChanged: _isSaving
-                      ? null
-                      : (v) => setState(() {
-                          _coverSourceMode = v!;
-                          _error = '';
-                        }),
-                  title: Text(tr('usePublicUrl')),
-                  contentPadding: EdgeInsets.zero,
-                ),
-                RadioListTile<_CoverSourceMode>(
-                  value: _CoverSourceMode.uploadPhoto,
-                  groupValue: _coverSourceMode,
-                  onChanged: _isSaving
-                      ? null
-                      : (v) => setState(() {
-                          _coverSourceMode = v!;
-                          _error = '';
-                        }),
-                  title: Text(tr('uploadPhoto')),
-                  contentPadding: EdgeInsets.zero,
+                  onChanged: (v) {
+                    if (_isSaving || v == null) return;
+                    setState(() {
+                      _coverSourceMode = v;
+                      _error = '';
+                    });
+                  },
+                  child: Column(
+                    children: [
+                      RadioListTile<_CoverSourceMode>(
+                        value: _CoverSourceMode.publicUrl,
+                        title: Text(tr('usePublicUrl')),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                      RadioListTile<_CoverSourceMode>(
+                        value: _CoverSourceMode.uploadPhoto,
+                        title: Text(tr('uploadPhoto')),
+                        contentPadding: EdgeInsets.zero,
+                      ),
+                    ],
+                  ),
                 ),
                 if (_coverSourceMode == _CoverSourceMode.publicUrl)
                   TextFormField(

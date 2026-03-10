@@ -2,6 +2,7 @@ import { Timestamp, getFirestore } from "firebase-admin/firestore";
 import { onDocumentCreated } from "firebase-functions/v2/firestore";
 
 type SupportedPlatform = "youtube" | "instagram" | "facebook";
+type YouTubeTarget = "shorts" | "video";
 type ContentType =
   | "news"
   | "events"
@@ -17,6 +18,26 @@ const DEFAULT_PLATFORMS: SupportedPlatform[] = [
 ];
 
 const SUPPORTED_PLATFORMS = new Set<SupportedPlatform>(DEFAULT_PLATFORMS);
+
+function detectYouTubeTarget(data: Record<string, unknown>): YouTubeTarget | null {
+  const mediaType = (data.mediaType as string | undefined)?.toLowerCase();
+  if (mediaType !== "video") return null;
+
+  const explicit = (data.youtubeTarget as string | undefined)?.toLowerCase();
+  if (explicit === "shorts" || explicit === "video") {
+    return explicit;
+  }
+
+  const durationSeconds =
+    typeof data.durationSeconds === "number" && Number.isFinite(data.durationSeconds)
+      ? data.durationSeconds
+      : null;
+
+  if (durationSeconds !== null && durationSeconds < 120) {
+    return "shorts";
+  }
+  return "video";
+}
 
 function resolvePlatforms(data: Record<string, unknown>): SupportedPlatform[] {
   // Allow disabling autopost on individual docs.
@@ -51,10 +72,13 @@ async function enqueueAutopostJob(
   const scheduledAt =
     data.autopostAt instanceof Timestamp ? data.autopostAt : null;
 
+  const youtubeTarget = contentType === "gallery" ? detectYouTubeTarget(data) : null;
+
   await getFirestore().collection("autopost_jobs").add({
     contentType,
     contentId,
     platforms,
+    youtubeTarget,
     status: "queued",
     lastError: "",
     scheduledAt,

@@ -23,16 +23,25 @@ class HomeAdsSection extends StatelessWidget {
             icon: Icons.campaign_outlined,
           );
         }
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              for (final ad in items) ...[
-                AdBanner(ad: ad),
-                const SizedBox(height: 12),
-              ],
-            ],
-          ),
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = constraints.maxWidth < 700
+                ? constraints.maxWidth - 32
+                : 360.0;
+            return SizedBox(
+              height: 132,
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                scrollDirection: Axis.horizontal,
+                itemCount: items.length,
+                separatorBuilder: (context, index) => const SizedBox(width: 12),
+                itemBuilder: (context, index) => SizedBox(
+                  width: cardWidth,
+                  child: AdBanner(ad: items[index]),
+                ),
+              ),
+            );
+          },
         );
       },
     );

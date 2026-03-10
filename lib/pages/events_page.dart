@@ -39,7 +39,7 @@ class EventsPage extends StatelessWidget {
                   itemCount: events.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: crossAxisCount,
-                    mainAxisExtent: 210,
+                    mainAxisExtent: 240,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
                   ),

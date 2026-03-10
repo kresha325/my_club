@@ -21,7 +21,7 @@ class AdBanner extends StatelessWidget {
               ad.imageUrl,
               height: 120,
               width: double.infinity,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) =>
                   const PlaceholderImage(
                     height: 120,

@@ -38,6 +38,7 @@ class AppNav {
   static const String adminAdsRoute = '/admin/ads';
   static const String adminAutopostRoute = '/admin/autopost';
   static const String adminTrainingRoute = '/admin/training';
+  static const String adminStaffRoute = '/admin/staff';
   static const String adminChatRoute = '/admin/chat';
 
   static const List<NavDestination> publicDestinations = [
@@ -135,6 +136,11 @@ class AppNav {
       label: 'Training',
       icon: Icons.fitness_center_outlined,
       route: adminTrainingRoute,
+    ),
+    NavDestination(
+      label: 'Staff',
+      icon: Icons.badge_outlined,
+      route: adminStaffRoute,
     ),
     NavDestination(
       label: 'Chat',

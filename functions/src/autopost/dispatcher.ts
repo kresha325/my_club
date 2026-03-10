@@ -1,9 +1,11 @@
 import { autopostToFacebook } from "./facebook";
 import { autopostToInstagram } from "./instagram";
 import { autopostToYouTube } from "./youtube";
-import { AutopostRequest } from "./types";
+import { AutopostRequest, AutopostResult } from "./types";
 
-export async function dispatchAutopost(req: AutopostRequest): Promise<void> {
+export async function dispatchAutopost(
+  req: AutopostRequest,
+): Promise<AutopostResult> {
   switch (req.platform) {
     case "youtube":
       return autopostToYouTube(req);

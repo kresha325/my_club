@@ -1,8 +1,10 @@
 import axios from "axios";
 
-import { AutopostRequest } from "./types";
+import { AutopostRequest, AutopostResult } from "./types";
 
-export async function autopostToInstagram(req: AutopostRequest): Promise<void> {
+export async function autopostToInstagram(
+  req: AutopostRequest,
+): Promise<AutopostResult> {
   // Placeholder only.
   // Instagram publishing uses the Instagram Graph API and requires:
   // - a Facebook App
@@ -17,20 +19,27 @@ export async function autopostToInstagram(req: AutopostRequest): Promise<void> {
   const accessToken = process.env.IG_ACCESS_TOKEN;
   if (!igUserId || !accessToken) {
     console.log("[Instagram] Missing IG_USER_ID/IG_ACCESS_TOKEN. Skipping.", req);
-    return;
+    return { platform: "instagram" };
   }
 
-  // Example: create a media container (image URL required).
-  // Developer: fetch Firestore content doc by (req.contentType, req.contentId)
-  // and build caption/mediaUrl.
-  const imageUrl = "https://example.com/placeholder.jpg";
-  const caption = "Placeholder autopost from Firebase Functions.";
+  const mediaUrl = req.mediaUrl?.trim();
+  if (!mediaUrl) {
+    console.log("[Instagram] Missing mediaUrl in request. Skipping.", req);
+    return { platform: "instagram" };
+  }
+
+  const caption = [
+    req.caption?.trim() ?? "",
+    req.youtubeUrl?.trim() ?? "",
+  ]
+    .filter(Boolean)
+    .join("\n\n") || "Placeholder autopost from Firebase Functions.";
 
   const container = await axios.post(
     `https://graph.facebook.com/v19.0/${igUserId}/media`,
     null,
     {
-      params: { image_url: imageUrl, caption, access_token: accessToken },
+      params: { image_url: mediaUrl, caption, access_token: accessToken },
     },
   );
 
@@ -44,5 +53,9 @@ export async function autopostToInstagram(req: AutopostRequest): Promise<void> {
   );
 
   console.log("[Instagram] Autopost placeholder executed.", req);
+  return {
+    platform: "instagram",
+    externalId: container.data?.id as string | undefined,
+  };
 }
 

@@ -21,21 +21,25 @@ class HomeNewsSection extends StatelessWidget {
             subtitle: 'Admin will add club news here.',
           );
         }
-        final crossAxisCount = MediaQuery.of(context).size.width >= 900 ? 3 : 1;
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: GridView.builder(
-            itemCount: items.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: crossAxisCount,
-              mainAxisExtent: 240,
-              crossAxisSpacing: 12,
-              mainAxisSpacing: 12,
-            ),
-            itemBuilder: (context, index) => NewsCard(item: items[index]),
-          ),
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            final cardWidth = constraints.maxWidth < 700
+                ? constraints.maxWidth - 32
+                : 360.0;
+            return SizedBox(
+              height: 260,
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                scrollDirection: Axis.horizontal,
+                itemCount: items.length,
+                separatorBuilder: (context, index) => const SizedBox(width: 12),
+                itemBuilder: (context, index) => SizedBox(
+                  width: cardWidth,
+                  child: NewsCard(item: items[index]),
+                ),
+              ),
+            );
+          },
         );
       },
     );

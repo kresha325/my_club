@@ -59,6 +59,11 @@ class AdminHomePage extends StatelessWidget {
         route: AppNav.adminTrainingRoute,
       ),
       (
+        label: tr('staff'),
+        icon: Icons.badge_outlined,
+        route: AppNav.adminStaffRoute,
+      ),
+      (
         label: tr('chat'),
         icon: Icons.forum_outlined,
         route: AppNav.adminChatRoute,

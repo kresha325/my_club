@@ -26,12 +26,14 @@ class BootstrapApp extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState != ConnectionState.done) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             onGenerateRoute: (_) => _bootstrapRoute(const LoadingPage()),
           );
         }
 
         if (snapshot.hasError) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             onGenerateRoute: (_) =>
                 _bootstrapRoute(FirebaseSetupPage(error: snapshot.error)),
           );

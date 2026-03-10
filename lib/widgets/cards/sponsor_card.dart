@@ -20,7 +20,7 @@ class SponsorCard extends StatelessWidget {
                   sponsor.logoUrl,
                   width: 40,
                   height: 40,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) =>
                       const PlaceholderImage(
                         height: 40,

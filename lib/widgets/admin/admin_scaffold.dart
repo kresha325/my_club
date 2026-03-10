@@ -22,6 +22,7 @@ class AdminScaffold extends StatelessWidget {
     final localeController = LocaleScope.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final destinations = AppNav.adminDestinations;
+    final showRailLabels = MediaQuery.of(context).size.height >= 860;
     final selectedIndex = AppNav.indexForLocation(
       location: location,
       destinations: destinations,
@@ -71,7 +72,12 @@ class AdminScaffold extends StatelessWidget {
               selectedIndex: selectedIndex,
               onDestinationSelected: (index) =>
                   context.go(destinations[index].route),
-              labelType: NavigationRailLabelType.all,
+              labelType: showRailLabels
+                  ? NavigationRailLabelType.all
+                  : NavigationRailLabelType.none,
+              minWidth: showRailLabels ? 72 : 56,
+              groupAlignment: -1,
+              scrollable: true,
               destinations: [
                 for (final d in destinations)
                   NavigationRailDestination(

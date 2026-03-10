@@ -19,6 +19,7 @@ import '../services/repositories/sponsors_repository.dart';
 import '../services/repositories/training_sessions_repository.dart';
 import '../services/repositories/announcements_repository.dart';
 import '../services/repositories/member_profiles_repository.dart';
+import '../services/repositories/staff_repository.dart';
 
 class AppDependencies {
   AppDependencies._({
@@ -70,6 +71,7 @@ class AppDependencies {
       AnnouncementsRepository(firestore);
   late final MemberProfilesRepository memberProfilesRepository =
       MemberProfilesRepository(firestore);
+  late final StaffRepository staffRepository = StaffRepository(firestore);
 }
 
 class DependenciesScope extends InheritedWidget {

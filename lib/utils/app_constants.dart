@@ -16,6 +16,7 @@ class AppConstants {
   static const String colTrainingSessions = 'training_sessions';
   static const String colAnnouncements = 'announcements';
   static const String colMemberProfiles = 'member_profiles';
+  static const String colStaff = 'staff';
 
   // Storage
   static const String storageClubMediaRoot = 'club_media';

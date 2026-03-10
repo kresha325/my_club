@@ -9,6 +9,7 @@ class GalleryItem {
     required this.mediaUrl,
     required this.thumbnailUrl,
     required this.mediaType,
+    required this.durationSeconds,
     required this.autopostEnabled,
     required this.autopostPlatforms,
     required this.createdAt,
@@ -19,6 +20,7 @@ class GalleryItem {
   final String mediaUrl;
   final String thumbnailUrl;
   final GalleryMediaType mediaType;
+  final int? durationSeconds;
   final bool autopostEnabled;
   final List<String> autopostPlatforms;
   final DateTime? createdAt;
@@ -29,6 +31,7 @@ class GalleryItem {
     String? mediaUrl,
     String? thumbnailUrl,
     GalleryMediaType? mediaType,
+    int? durationSeconds,
     bool? autopostEnabled,
     List<String>? autopostPlatforms,
     DateTime? createdAt,
@@ -39,6 +42,7 @@ class GalleryItem {
       mediaUrl: mediaUrl ?? this.mediaUrl,
       thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
       mediaType: mediaType ?? this.mediaType,
+      durationSeconds: durationSeconds ?? this.durationSeconds,
       autopostEnabled: autopostEnabled ?? this.autopostEnabled,
       autopostPlatforms: autopostPlatforms ?? this.autopostPlatforms,
       createdAt: createdAt ?? this.createdAt,
@@ -55,6 +59,7 @@ class GalleryItem {
       mediaType: type == 'video'
           ? GalleryMediaType.video
           : GalleryMediaType.image,
+      durationSeconds: (data['durationSeconds'] as num?)?.toInt(),
       autopostEnabled: (data['autopostEnabled'] as bool?) ?? false,
       autopostPlatforms:
           (data['autopostPlatforms'] as List?)?.whereType<String>().toList() ??
@@ -69,6 +74,7 @@ class GalleryItem {
       'mediaUrl': mediaUrl,
       'thumbnailUrl': thumbnailUrl,
       'mediaType': mediaType == GalleryMediaType.video ? 'video' : 'image',
+      'durationSeconds': durationSeconds,
       'autopostEnabled': autopostEnabled,
       'autopostPlatforms': autopostPlatforms,
       'createdAt': writeFirestoreDateTime(createdAt),

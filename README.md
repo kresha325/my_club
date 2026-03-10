@@ -5,7 +5,8 @@ Everything is **blank by default** so an admin can populate it.
 
 ## Features
 
-**Public app (Web + Android + iOS)**
+### Public app (Web + Android + iOS)
+
 - Home (news/events/gallery/ads placeholders)
 - Team (athletes)
 - Gallery (photos/videos placeholders)
@@ -15,7 +16,8 @@ Everything is **blank by default** so an admin can populate it.
 - Live Streaming (embed placeholder)
 - Membership (monetization placeholder)
 
-**Admin**
+### Admin
+
 - Email/password login (Firebase Auth)
 - Admin allowlist: create `admins/{uid}` in Firestore
 - CRUD: athletes, news, events, matches, gallery, sponsors, ads
@@ -37,6 +39,7 @@ Everything is **blank by default** so an admin can populate it.
 ## Folder structure
 
 Inside `lib/`:
+
 - `models/` data models
 - `services/` Firebase + repository + autopost placeholders
 - `pages/` public + admin pages
@@ -45,15 +48,18 @@ Inside `lib/`:
 
 ## Setup (recommended)
 
-1) Install dependencies:
+1. Install dependencies:
+
    - `flutter pub get`
 
-2) Connect Firebase:
+2. Connect Firebase:
+
    - Install FlutterFire CLI
    - Run: `flutterfire configure`
    - Replace the placeholder `lib/firebase_options.dart`
 
-3) Firebase Functions (optional):
+3. Firebase Functions (optional):
+
    - Skeleton lives in `functions/`
    - Deploy with: `firebase deploy --only functions`
 

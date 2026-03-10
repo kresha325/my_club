@@ -1,56 +1,48 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/athlete.dart';
+import '../../../models/staff_member.dart';
 import '../../../utils/app_localizations.dart';
 import '../../../utils/validators.dart';
 
-class AthleteFormDialog extends StatefulWidget {
-  const AthleteFormDialog({this.initial, super.key});
+class StaffFormDialog extends StatefulWidget {
+  const StaffFormDialog({this.initial, super.key});
 
-  final Athlete? initial;
+  final StaffMember? initial;
 
   @override
-  State<AthleteFormDialog> createState() => _AthleteFormDialogState();
+  State<StaffFormDialog> createState() => _StaffFormDialogState();
 }
 
-class _AthleteFormDialogState extends State<AthleteFormDialog> {
+class _StaffFormDialogState extends State<StaffFormDialog> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _nameCtrl;
   late final TextEditingController _positionCtrl;
-  late final TextEditingController _numberCtrl;
   late final TextEditingController _photoUrlCtrl;
-  late final TextEditingController _bioCtrl;
 
   @override
   void initState() {
     super.initState();
     _nameCtrl = TextEditingController(text: widget.initial?.fullName ?? '');
     _positionCtrl = TextEditingController(text: widget.initial?.position ?? '');
-    _numberCtrl = TextEditingController(text: widget.initial?.number ?? '');
     _photoUrlCtrl = TextEditingController(text: widget.initial?.photoUrl ?? '');
-    _bioCtrl = TextEditingController(text: widget.initial?.bio ?? '');
   }
 
   @override
   void dispose() {
     _nameCtrl.dispose();
     _positionCtrl.dispose();
-    _numberCtrl.dispose();
     _photoUrlCtrl.dispose();
-    _bioCtrl.dispose();
     super.dispose();
   }
 
   void _save() {
     if (!_formKey.currentState!.validate()) return;
 
-    final result = Athlete(
+    final result = StaffMember(
       id: widget.initial?.id ?? '',
       fullName: _nameCtrl.text.trim(),
       position: _positionCtrl.text.trim(),
-      number: _numberCtrl.text.trim(),
       photoUrl: _photoUrlCtrl.text.trim(),
-      bio: _bioCtrl.text.trim(),
       createdAt: widget.initial?.createdAt,
     );
     Navigator.of(context).pop(result);
@@ -62,7 +54,7 @@ class _AthleteFormDialogState extends State<AthleteFormDialog> {
     String tr(String key) => AppLocalizations.t(context, key);
 
     return AlertDialog(
-      title: Text(isEdit ? tr('editAthlete') : tr('addAthlete')),
+      title: Text(isEdit ? tr('editStaff') : tr('addStaff')),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 520),
         child: Form(
@@ -79,14 +71,7 @@ class _AthleteFormDialogState extends State<AthleteFormDialog> {
                 TextFormField(
                   controller: _positionCtrl,
                   decoration: InputDecoration(
-                    labelText: tr('wrestlingStyleOptional'),
-                  ),
-                ),
-                const SizedBox(height: 12),
-                TextFormField(
-                  controller: _numberCtrl,
-                  decoration: InputDecoration(
-                    labelText: tr('weightCategoryOptional'),
+                    labelText: tr('positionOptional'),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -96,12 +81,6 @@ class _AthleteFormDialogState extends State<AthleteFormDialog> {
                     labelText: tr('photoUrlOptional'),
                     helperText: tr('galleryUrlTip'),
                   ),
-                ),
-                const SizedBox(height: 12),
-                TextFormField(
-                  controller: _bioCtrl,
-                  decoration: InputDecoration(labelText: tr('bioOptional')),
-                  maxLines: 4,
                 ),
               ],
             ),

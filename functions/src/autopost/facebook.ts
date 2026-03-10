@@ -1,8 +1,10 @@
 import axios from "axios";
 
-import { AutopostRequest } from "./types";
+import { AutopostRequest, AutopostResult } from "./types";
 
-export async function autopostToFacebook(req: AutopostRequest): Promise<void> {
+export async function autopostToFacebook(
+  req: AutopostRequest,
+): Promise<AutopostResult> {
   // Placeholder only.
   // Facebook posting typically uses the Graph API and requires:
   // - PAGE_ID
@@ -12,14 +14,28 @@ export async function autopostToFacebook(req: AutopostRequest): Promise<void> {
   const accessToken = process.env.FB_PAGE_ACCESS_TOKEN;
   if (!pageId || !accessToken) {
     console.log("[Facebook] Missing FB_PAGE_ID/FB_PAGE_ACCESS_TOKEN. Skipping.", req);
-    return;
+    return { platform: "facebook" };
   }
 
-  const message = "Placeholder autopost from Firebase Functions.";
-  await axios.post(`https://graph.facebook.com/v19.0/${pageId}/feed`, null, {
+  const message = [
+    req.caption?.trim() ?? "",
+    req.youtubeUrl?.trim() ?? "",
+  ]
+    .filter(Boolean)
+    .join("\n\n") || "Placeholder autopost from Firebase Functions.";
+
+  const response = await axios.post(
+    `https://graph.facebook.com/v19.0/${pageId}/feed`,
+    null,
+    {
     params: { message, access_token: accessToken },
-  });
+    },
+  );
 
   console.log("[Facebook] Autopost placeholder executed.", req);
+  return {
+    platform: "facebook",
+    externalId: response.data?.id as string | undefined,
+  };
 }
 

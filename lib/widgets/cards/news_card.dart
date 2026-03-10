@@ -21,7 +21,7 @@ class NewsCard extends StatelessWidget {
             Image.network(
               item.coverUrl,
               height: 140,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) =>
                   const PlaceholderImage(height: 140),
             ),

@@ -1,8 +1,10 @@
 import axios from "axios";
 
-import { AutopostRequest } from "./types";
+import { AutopostRequest, AutopostResult } from "./types";
 
-export async function autopostToYouTube(req: AutopostRequest): Promise<void> {
+export async function autopostToYouTube(
+  req: AutopostRequest,
+): Promise<AutopostResult> {
   // Placeholder only.
   // Real YouTube posting typically requires OAuth 2.0 user consent and a stored refresh token.
   //
@@ -18,9 +20,13 @@ export async function autopostToYouTube(req: AutopostRequest): Promise<void> {
   // );
 
   const accessToken = process.env.YOUTUBE_ACCESS_TOKEN;
+  const target = req.youtubeTarget ?? "video";
   if (!accessToken) {
-    console.log("[YouTube] Missing YOUTUBE_ACCESS_TOKEN. Skipping.", req);
-    return;
+    console.log(
+      `[YouTube] Missing YOUTUBE_ACCESS_TOKEN. Skipping. target=${target}`,
+      req,
+    );
+    return { platform: "youtube" };
   }
 
   // Example lightweight request (no posting) just to show structure:
@@ -32,6 +38,8 @@ export async function autopostToYouTube(req: AutopostRequest): Promise<void> {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 
-  console.log("[YouTube] Autopost placeholder executed.", req);
+  // TODO: replace with real resumable upload (videos.insert) and return the final watch URL.
+  console.log(`[YouTube] Autopost placeholder executed. target=${target}`, req);
+  return { platform: "youtube" };
 }
 

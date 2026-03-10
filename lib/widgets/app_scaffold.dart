@@ -6,7 +6,6 @@ import '../utils/app_constants.dart';
 import '../utils/app_localizations.dart';
 import '../utils/app_nav.dart';
 import '../app/theme_scope.dart';
-import 'app_drawer.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({required this.location, required this.child, super.key});
@@ -20,13 +19,23 @@ class AppScaffold extends StatelessWidget {
     final themeController = ThemeScope.of(context);
     final localeController = LocaleScope.of(context);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final screenWidth = MediaQuery.of(context).size.width;
     final destinations = AppNav.publicDestinations;
+    final mobilePrimaryDestinations = [
+      destinations.firstWhere((d) => d.route == AppNav.homeRoute),
+      destinations.firstWhere((d) => d.route == AppNav.teamRoute),
+      destinations.firstWhere((d) => d.route == AppNav.eventsRoute),
+    ];
+    final mobileMenuDestinations = destinations
+        .where((d) => !mobilePrimaryDestinations.any((p) => p.route == d.route))
+        .toList();
+    final isWide = screenWidth >= 900;
+    final showRailLabels = MediaQuery.of(context).size.height >= 820;
+    final compactActions = screenWidth < 640;
     final selectedIndex = AppNav.indexForLocation(
       location: location,
       destinations: destinations,
     );
-
-    final isWide = MediaQuery.of(context).size.width >= 900;
 
     return Scaffold(
       appBar: AppBar(
@@ -67,32 +76,42 @@ class AppScaffold extends StatelessWidget {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            tooltip: isDark ? tr('switchToLight') : tr('switchToDark'),
-            onPressed: themeController.toggleLightDark,
-            icon: Icon(
-              isDark ? Icons.light_mode_outlined : Icons.dark_mode_outlined,
-            ),
-          ),
-          PopupMenuButton<Locale>(
-            tooltip: tr('language'),
-            onSelected: localeController.setLocale,
-            itemBuilder: (context) => const [
-              PopupMenuItem(value: Locale('sq'), child: Text('Shqip')),
-              PopupMenuItem(value: Locale('en'), child: Text('English')),
-            ],
-            icon: const Icon(Icons.language_outlined),
-          ),
-          TextButton.icon(
-            onPressed: () => context.go(AppNav.adminHomeRoute),
-            icon: const Icon(Icons.admin_panel_settings_outlined),
-            label: Text(tr('admin')),
-          ),
-          const SizedBox(width: 8),
-        ],
+        actions: isWide
+            ? [
+                IconButton(
+                  tooltip: isDark ? tr('switchToLight') : tr('switchToDark'),
+                  onPressed: themeController.toggleLightDark,
+                  icon: Icon(
+                    isDark
+                        ? Icons.light_mode_outlined
+                        : Icons.dark_mode_outlined,
+                  ),
+                ),
+                PopupMenuButton<Locale>(
+                  tooltip: tr('language'),
+                  onSelected: localeController.setLocale,
+                  itemBuilder: (context) => const [
+                    PopupMenuItem(value: Locale('sq'), child: Text('Shqip')),
+                    PopupMenuItem(value: Locale('en'), child: Text('English')),
+                  ],
+                  icon: const Icon(Icons.language_outlined),
+                ),
+                if (compactActions)
+                  IconButton(
+                    tooltip: tr('admin'),
+                    onPressed: () => context.go(AppNav.adminHomeRoute),
+                    icon: const Icon(Icons.admin_panel_settings_outlined),
+                  )
+                else
+                  TextButton.icon(
+                    onPressed: () => context.go(AppNav.adminHomeRoute),
+                    icon: const Icon(Icons.admin_panel_settings_outlined),
+                    label: Text(tr('admin')),
+                  ),
+                const SizedBox(width: 4),
+              ]
+            : null,
       ),
-      drawer: isWide ? null : const AppDrawer(),
       body: isWide
           ? Row(
               children: [
@@ -100,7 +119,12 @@ class AppScaffold extends StatelessWidget {
                   selectedIndex: selectedIndex,
                   onDestinationSelected: (index) =>
                       context.go(destinations[index].route),
-                  labelType: NavigationRailLabelType.all,
+                  labelType: showRailLabels
+                      ? NavigationRailLabelType.all
+                      : NavigationRailLabelType.none,
+                  minWidth: showRailLabels ? 72 : 56,
+                  groupAlignment: -1,
+                  scrollable: true,
                   destinations: [
                     for (final d in destinations)
                       NavigationRailDestination(
@@ -117,18 +141,123 @@ class AppScaffold extends StatelessWidget {
       bottomNavigationBar: isWide
           ? null
           : BottomNavigationBar(
-              currentIndex: selectedIndex,
-              onTap: (index) => context.go(destinations[index].route),
               type: BottomNavigationBarType.fixed,
+              currentIndex: _mobileSelectedIndex(
+                location,
+                mobilePrimaryDestinations,
+              ),
+              onTap: (index) async {
+                if (index < mobilePrimaryDestinations.length) {
+                  context.go(mobilePrimaryDestinations[index].route);
+                  return;
+                }
+                if (index == mobilePrimaryDestinations.length) {
+                  final selectedRoute = await showModalBottomSheet<String>(
+                    context: context,
+                    showDragHandle: true,
+                    builder: (sheetContext) => SafeArea(
+                      child: ListView(
+                        shrinkWrap: true,
+                        children: [
+                          for (final d in mobileMenuDestinations)
+                            ListTile(
+                              leading: Icon(d.icon),
+                              title: Text(_labelForRoute(context, d.route)),
+                              onTap: () =>
+                                  Navigator.of(sheetContext).pop(d.route),
+                            ),
+                        ],
+                      ),
+                    ),
+                  );
+                  if (selectedRoute != null && context.mounted) {
+                    context.go(selectedRoute);
+                  }
+                  return;
+                }
+
+                await showModalBottomSheet<void>(
+                  context: context,
+                  showDragHandle: true,
+                  builder: (sheetContext) => SafeArea(
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: [
+                        ListTile(
+                          leading: Icon(
+                            isDark
+                                ? Icons.light_mode_outlined
+                                : Icons.dark_mode_outlined,
+                          ),
+                          title: Text(
+                            isDark ? tr('switchToLight') : tr('switchToDark'),
+                          ),
+                          onTap: () {
+                            Navigator.of(sheetContext).pop();
+                            themeController.toggleLightDark();
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.language_outlined),
+                          title: Text(tr('language')),
+                          subtitle: const Text('Shqip / English'),
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.flag_outlined),
+                          title: const Text('Shqip'),
+                          onTap: () {
+                            Navigator.of(sheetContext).pop();
+                            localeController.setLocale(const Locale('sq'));
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.language_outlined),
+                          title: const Text('English'),
+                          onTap: () {
+                            Navigator.of(sheetContext).pop();
+                            localeController.setLocale(const Locale('en'));
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(
+                            Icons.admin_panel_settings_outlined,
+                          ),
+                          title: Text(tr('admin')),
+                          onTap: () {
+                            Navigator.of(sheetContext).pop();
+                            context.go(AppNav.adminHomeRoute);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
               items: [
-                for (final d in destinations)
+                for (final d in mobilePrimaryDestinations)
                   BottomNavigationBarItem(
                     icon: Icon(d.icon),
                     label: _labelForRoute(context, d.route),
                   ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.menu_outlined),
+                  label: tr('menu'),
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.settings_outlined),
+                  label: tr('settings'),
+                ),
               ],
             ),
     );
+  }
+
+  int _mobileSelectedIndex(String location, List<NavDestination> primary) {
+    final primaryIndex = primary.indexWhere((d) => location == d.route);
+    if (primaryIndex >= 0) {
+      return primaryIndex;
+    }
+    return primary.length;
   }
 
   String _labelForRoute(BuildContext context, String route) {
